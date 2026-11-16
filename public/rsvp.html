@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>RSVP · PESO Bali</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0c0a08">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0c0a08;--ivory:#f4ecdf;--brass:#c69a4e;--brass-bright:#e0b666;--brass-dim:#8a6c37;--stone-dim:#8a7d6b;
+    --line:rgba(198,154,78,0.18);
+    --font-display:"Lora",Georgia,"Times New Roman",serif;
+    --font-body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --font-ui:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --ease:cubic-bezier(.16,.8,.24,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black);color:var(--ivory);font-family:var(--font-body);font-size:0.96rem;-webkit-font-smoothing:antialiased;}
+  img{display:block;max-width:100%;}
+
+  .nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:1.6rem 2rem;}
+  .nav__brand{font-family:var(--font-ui);letter-spacing:0.34em;font-size:0.95rem;color:var(--ivory);text-decoration:none;padding-left:0.34em;text-shadow:0 1px 20px rgba(0,0,0,0.6);}
+  .nav__links{display:flex;gap:1.4rem;}
+  .nav__links a{font-family:var(--font-ui);color:var(--ivory);text-decoration:none;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85;transition:opacity .2s var(--ease),color .2s var(--ease);text-shadow:0 1px 20px rgba(0,0,0,0.6);}
+  .nav__links a:hover{color:var(--brass);opacity:1;}
+
+  .faq-hero{position:relative;min-height:60svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;overflow:hidden;}
+  .faq-hero__bg{position:absolute;inset:0;background:url("night.jpg") center/cover no-repeat;}
+  .faq-hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(12,10,8,0.52) 0%, rgba(12,10,8,0.72) 55%, rgba(12,10,8,0.94) 86%, var(--black) 100%);}
+  .faq-hero__inner{position:relative;z-index:2;}
+  .faq-hero .eyebrow{font-family:var(--font-ui);font-size:0.72rem;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;color:var(--brass-bright);margin:0 0 1.4rem;padding-left:0.34em;}
+  .faq-hero h1{font-family:var(--font-display);font-weight:400;letter-spacing:0.01em;font-size:clamp(1.7rem,4.2vw,2.6rem);line-height:1.15;color:var(--ivory);margin:0;text-shadow:0 2px 30px rgba(0,0,0,0.5);}
+  .faq-hero .loc{font-family:var(--font-ui);color:var(--ivory);opacity:0.85;font-size:0.82rem;letter-spacing:0.16em;text-transform:uppercase;margin-top:1.4rem;}
+  .faq-hero .strict{margin:1.5rem 0 0;}
+  .faq-hero .strict span{display:inline-block;font-family:var(--font-ui);font-size:0.62rem;font-weight:600;
+    letter-spacing:0.3em;text-transform:uppercase;color:var(--brass-bright);padding:0.5rem 1.1rem 0.5rem 1.4rem;
+    border:1px solid rgba(198,154,78,0.45);border-radius:2px;background:rgba(12,10,8,0.35);
+    backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);}
+
+  .faq{max-width:42rem;margin:0 auto;padding:4.5rem 1.5rem 2rem;}
+  .faq__item{border-bottom:1px solid var(--line);}
+  .faq__item:first-child{border-top:1px solid var(--line);}
+  .faq__q{font-family:var(--font-display);font-weight:400;font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--ivory);margin:0;padding:1.7rem 2.5rem 1.7rem 0;cursor:pointer;list-style:none;position:relative;transition:color .2s var(--ease);}
+  .faq__q::-webkit-details-marker{display:none;}
+  .faq__q:hover{color:var(--brass-bright);}
+  .faq__q::after{content:"";position:absolute;right:0.4rem;top:50%;width:0.62rem;height:0.62rem;border-right:1px solid var(--brass);border-bottom:1px solid var(--brass);transform:translateY(-70%) rotate(45deg);transition:transform .3s var(--ease);}
+  details[open] > .faq__q::after{transform:translateY(-30%) rotate(225deg);}
+  .faq__a{padding:0 0 1.9rem;margin:0;}
+  .faq__a p{font-size:0.97rem;line-height:1.9;color:#cdbfa9;margin:0 0 1rem;}
+  .faq__a p:last-child{margin-bottom:0;}
+  .faq__a a{color:var(--brass);text-decoration:none;border-bottom:1px solid var(--brass-dim);}
+  .faq__a a:hover{color:var(--brass-bright);}
+
+  .faq-cta{max-width:42rem;margin:0 auto;padding:1.5rem 1.5rem 5rem;text-align:center;}
+  .faq-cta p{font-size:0.95rem;line-height:1.85;color:var(--stone-dim);margin:0 0 1.4rem;}
+  .link-btn{font-family:var(--font-ui);display:inline-block;font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--brass-bright);text-decoration:none;border-bottom:1px solid var(--brass-dim);padding-bottom:0.3rem;transition:color .2s var(--ease);}
+  .link-btn:hover{color:var(--ivory);}
+
+  .foot{border-top:1px solid var(--line);padding:2.8rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.7rem;text-align:center;}
+  .foot__social{flex-wrap:wrap;justify-content:center;max-width:52rem;row-gap:0.7rem;font-family:var(--font-ui);display:flex;gap:1.4rem;flex-wrap:wrap;justify-content:center;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;}
+  .foot__social a{color:var(--stone-dim);text-decoration:none;border-bottom:1px solid transparent;transition:color .2s var(--ease), border-color .2s var(--ease);}
+  .foot__social a:hover{color:var(--brass);border-color:var(--brass-dim);}
+  .foot__loc{font-family:var(--font-ui);color:#6b6154;font-size:0.76rem;letter-spacing:0.03em;}
+  .foot__loc a{color:var(--brass);text-decoration:none;border-bottom:1px solid rgba(198,154,78,0.35);transition:color .2s ease,border-color .2s ease;}
+  .foot__loc a:hover{color:var(--brass-bright);border-bottom-color:var(--brass-bright);}
+
+
+  .legal{max-width:44rem;margin:0 auto;padding:4rem 1.5rem 1rem;}
+  .legal__meta{font-family:var(--font-ui);font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone-dim);margin:0 0 2.8rem;padding-bottom:1.6rem;border-bottom:1px solid var(--line);}
+  .legal h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.15rem,2.2vw,1.45rem);color:var(--ivory);margin:3rem 0 1rem;}
+  .legal h2:first-of-type{margin-top:0;}
+  .legal h3{font-family:var(--font-ui);font-weight:600;font-size:0.8rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass-bright);margin:2rem 0 0.7rem;}
+  .legal p{font-size:0.97rem;line-height:1.9;color:#cdbfa9;margin:0 0 1.1rem;}
+  .legal ul{margin:0 0 1.4rem;padding-left:1.15rem;}
+  .legal li{font-size:0.97rem;line-height:1.85;color:#cdbfa9;margin:0 0 0.6rem;}
+  .legal a{color:var(--brass);text-decoration:none;border-bottom:1px solid var(--brass-dim);}
+  .legal a:hover{color:var(--brass-bright);}
+  .legal strong{color:var(--ivory);font-weight:400;}
+  .legal__table{width:100%;border-collapse:collapse;margin:0 0 1.6rem;font-family:var(--font-ui);font-size:0.84rem;}
+  .legal__table th{text-align:left;font-weight:600;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass-bright);padding:0 1rem 0.8rem 0;border-bottom:1px solid var(--line);vertical-align:bottom;}
+  .legal__table td{padding:0.9rem 1rem 0.9rem 0;border-bottom:1px solid var(--line);color:#cdbfa9;line-height:1.65;vertical-align:top;}
+  .legal__table td:last-child,.legal__table th:last-child{padding-right:0;}
+  @media (max-width:600px){
+    .legal__table,.legal__table tbody,.legal__table tr,.legal__table td{display:block;width:100%;}
+    .legal__table thead{display:none;}
+    .legal__table tr{border-bottom:1px solid var(--line);padding:1rem 0;}
+    .legal__table td{border:0;padding:0 0 0.35rem;}
+    .legal__table td:first-child{color:var(--ivory);}
+  }
+
+
+  .rsvp{max-width:31rem;margin:0 auto;padding:3.5rem 1.5rem 4rem;}
+  .rsvp__when{padding:0.6rem 0 2.4rem;margin:0 0 1rem;text-align:center;position:relative;}
+  .rule{position:relative;height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);margin:2.6rem auto;max-width:22rem;}
+  .rule::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-3px 0 0 -3px;background:var(--brass-dim);transform:rotate(45deg);}
+  .rsvp__when dt{font-family:var(--font-ui);font-size:0.66rem;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--brass-bright);margin:0 0 0.5rem;}
+  .rsvp__when dd{font-family:var(--font-display);font-size:1.15rem;color:var(--ivory);margin:0 0 1.3rem;line-height:1.4;}
+  .rsvp__when dd a{color:var(--brass);text-decoration:none;border-bottom:1px solid rgba(198,154,78,0.35);transition:color .2s var(--ease),border-color .2s var(--ease);}
+  .rsvp__when dd a:hover{color:var(--brass-bright);border-bottom-color:var(--brass-bright);}
+  .rsvp__when dd:last-child{margin-bottom:0;}
+  .rsvp__when a{color:inherit;text-decoration:none;border-bottom:1px solid var(--brass-dim);}
+  .rsvp__when a:hover{color:var(--brass);}
+  .rsvp__lead{font-size:0.97rem;line-height:1.9;color:#cdbfa9;margin:0 0 2.6rem;text-align:center;}
+  .rsvp__note{font-family:var(--font-ui);font-size:0.76rem;line-height:1.7;letter-spacing:0.02em;color:var(--stone-dim);
+    text-align:center;margin:-1.6rem 0 2.4rem;padding:0 1rem;}
+  .rsvp__form{display:flex;flex-direction:column;gap:0.85rem;}
+  .rsvp label.fl{font-family:var(--font-ui);font-size:0.68rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone-dim);display:block;margin:0 0 0.45rem;}
+  .rsvp .field{width:100%;padding:0.95rem 1rem;background:rgba(244,236,223,0.045);border:1px solid var(--line);border-radius:2px;color:var(--ivory);font-family:var(--font-body);font-size:1rem;transition:border-color .2s var(--ease),background .2s var(--ease);}
+  .rsvp .field::placeholder{color:#6b6154;}
+  .rsvp .field:focus{outline:none;border-color:var(--brass);background:rgba(244,236,223,0.07);}
+  .rsvp .field:invalid:not(:placeholder-shown){border-color:#8A3B1D;}
+  .check{display:flex;align-items:flex-start;gap:0.75rem;padding:0.85rem 0.2rem;cursor:pointer;}
+  .check input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:1.15rem;height:1.15rem;margin:0.08rem 0 0;border:1px solid var(--brass-dim);border-radius:2px;background:transparent;cursor:pointer;position:relative;transition:background .2s var(--ease),border-color .2s var(--ease);}
+  .check input:checked{background:var(--brass);border-color:var(--brass);}
+  .check input:checked::after{content:"";position:absolute;left:0.35rem;top:0.12rem;width:0.28rem;height:0.58rem;border:solid #0c0a08;border-width:0 2px 2px 0;transform:rotate(45deg);}
+  .check input:focus-visible{outline:2px solid var(--brass-bright);outline-offset:2px;}
+  .check span{font-size:0.93rem;line-height:1.5;color:#cdbfa9;}
+  /* are you bringing a guest? */
+  .guestq{margin:0.55rem 0 0;}
+  .rsvp .guestq .fl{font-family:var(--font-ui);font-size:0.68rem;font-weight:600;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--stone-dim);display:block;margin:0;}
+  .seg{display:flex;gap:0.6rem;margin-top:0.55rem;}
+  .seg__opt{flex:1 1 0;position:relative;cursor:pointer;}
+  .seg__opt input{position:absolute;opacity:0;width:0;height:0;}
+  .seg__opt span{display:block;text-align:center;padding:0.85rem 1rem;border:1px solid var(--line);border-radius:2px;
+    font-family:var(--font-ui);font-size:0.74rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+    color:#cdbfa9;background:rgba(244,236,223,0.045);
+    transition:border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease);}
+  .seg__opt:hover span{border-color:var(--brass-dim);color:var(--ivory);}
+  .seg__opt input:checked + span{background:var(--brass);border-color:var(--brass);color:#0c0a08;}
+  .seg__opt input:focus-visible + span{outline:2px solid var(--brass-bright);outline-offset:2px;}
+
+  .guests{margin:0.9rem 0 0.2rem 1.05rem;padding-left:1.05rem;border-left:1px solid var(--line);
+    animation:guestsIn .32s cubic-bezier(.2,.8,.3,1) both;}
+  .guests[hidden]{display:none;}
+  .guests__note{font-family:var(--font-ui);font-size:0.72rem;letter-spacing:0.04em;color:var(--stone-dim);margin:0.6rem 0 0;}
+  @keyframes guestsIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+
+  .stepper{display:inline-flex;align-items:stretch;border:1px solid var(--line);border-radius:2px;overflow:hidden;
+    background:rgba(244,236,223,0.045);}
+  .stepper__btn{width:3rem;border:0;background:none;cursor:pointer;color:var(--brass);
+    font-family:var(--font-ui);font-size:1.15rem;line-height:1;padding:0.7rem 0;
+    transition:background .2s var(--ease),color .2s var(--ease);}
+  .stepper__btn:hover{background:rgba(198,154,78,0.14);color:var(--brass-bright);}
+  .stepper__btn:disabled{opacity:0.3;cursor:default;background:none;}
+  .stepper__btn:focus-visible{outline:2px solid var(--brass-bright);outline-offset:-2px;}
+  .rsvp .stepper__num{width:4rem;text-align:center;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);
+    background:none;color:var(--ivory);font-family:var(--font-body);font-size:1.05rem;padding:0.7rem 0;
+    -moz-appearance:textfield;appearance:textfield;}
+  .rsvp .stepper__num::-webkit-outer-spin-button,.rsvp .stepper__num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  .rsvp .stepper__num:focus{outline:none;background:rgba(198,154,78,0.10);}
+  .rsvp .btn{margin-top:0.7rem;padding:1.05rem;background:var(--brass);color:#0c0a08;border:none;border-radius:2px;font-family:var(--font-ui);font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background .2s var(--ease);}
+  .rsvp .btn:hover:not(:disabled){background:var(--brass-bright);}
+  .rsvp .btn:disabled{opacity:0.55;cursor:default;}
+  .msg{font-family:var(--font-ui);font-size:0.82rem;line-height:1.6;text-align:center;margin:0.4rem 0 0;min-height:1.2rem;}
+  .msg.err{color:#d98b62;}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+  .done{display:none;text-align:center;padding:1rem 0 0;}
+  .done.show{display:block;}
+  .done h2{font-family:var(--font-display);font-weight:400;font-size:1.6rem;color:var(--ivory);margin:0 0 0.9rem;}
+  .done p{font-size:0.97rem;line-height:1.9;color:#cdbfa9;margin:0 0 0.6rem;}
+  .done .sm{font-size:0.86rem;color:var(--stone-dim);}
+  .rsvp__form.hide{display:none;}
+
+
+  /* ---------- AMBIENT ETCHED ELEMENTS ---------- */
+  .amb{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+  .amb i{position:absolute;display:block;background-repeat:no-repeat;background-size:contain;background-position:center;
+    will-change:transform;transform:translate3d(var(--px,0px),var(--py,0px),0) rotate(var(--r,0deg));}
+  .amb i::after{content:"";position:absolute;inset:0;}
+  .a-palm1{left:-5vw;top:-4vh;width:min(38vw,430px);aspect-ratio:400/324;opacity:.17;
+    background-image:url("palm.webp");animation:sway1 17s ease-in-out infinite;}
+  .a-palm2{right:-6vw;top:-3vh;width:min(32vw,360px);aspect-ratio:400/324;opacity:.13;transform-origin:80% 20%;
+    background-image:url("palm.webp");animation:sway2 21s ease-in-out infinite;filter:scaleX(-1);}
+  .a-palm2{transform:scaleX(-1);}
+  .a-candle{left:4vw;bottom:2vh;width:min(15vw,168px);aspect-ratio:192/310;opacity:.24;
+    background-image:url("candle.webp");animation:drift1 13s ease-in-out infinite;}
+  .a-candle::after{left:50%;top:7%;width:8.5rem;height:8.5rem;margin:-4.25rem 0 0 -4.25rem;border-radius:50%;inset:auto;
+    background:radial-gradient(circle,rgba(255,182,88,0.5) 0%,rgba(255,160,60,0.17) 30%,transparent 60%);
+    mix-blend-mode:screen;animation:flicker 3.7s ease-in-out infinite;}
+  .a-martini{right:5vw;top:26vh;width:min(12vw,138px);aspect-ratio:178/369;opacity:.16;
+    background-image:url("martini.webp");animation:drift2 19s ease-in-out infinite;}
+  .a-olives{left:50%;bottom:5vh;width:min(11vw,120px);aspect-ratio:140/76;opacity:.18;margin-left:-16vw;
+    background-image:url("olives.webp");animation:drift1 15s ease-in-out infinite reverse;}
+  @keyframes sway1{0%,100%{--r:0deg}50%{--r:2.4deg}}
+  @keyframes sway2{0%,100%{--r:0deg}50%{--r:-2deg}}
+  @keyframes drift1{0%,100%{--py:0px}50%{--py:-11px}}
+  @keyframes drift2{0%,100%{--py:0px}50%{--py:9px}}
+  .inv__stage{position:relative;z-index:2;}
+  @media (max-width:700px){
+    .a-martini,.a-olives{display:none;}
+    .a-palm1{width:52vw;opacity:.13;} .a-palm2{width:46vw;opacity:.1;}
+    .a-candle{width:24vw;opacity:.2;left:2vw;}
+  }
+  @media (prefers-reduced-motion:reduce){ .amb i{animation:none;} }
+
+  /* etched accents on the form page */
+  .acc{position:absolute;pointer-events:none;background-repeat:no-repeat;background-size:contain;z-index:0;}
+  .acc-palm{top:-2rem;left:-3rem;width:min(30vw,300px);aspect-ratio:400/324;opacity:.09;
+    background-image:url("palm.webp");}
+  .acc-gin{right:-2rem;bottom:-1rem;width:min(16vw,180px);aspect-ratio:286/440;opacity:.1;
+    background-image:url("gin.webp");}
+  .rsvp{position:relative;}
+  .rsvp > *{position:relative;z-index:1;}
+  @media (max-width:700px){ .acc-palm,.acc-gin{display:none;} }
+
+  /* ---------- THE INVITATION ---------- */
+  .inv{position:fixed;inset:0;z-index:9999;background:radial-gradient(120% 90% at 50% 40%,#171310 0%,#0c0a08 62%,#070605 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;padding:4vh 4vw;overflow:hidden;}
+  .inv.is-gone{display:none;}
+
+  /* geometry: everything derives from the card width */
+  .inv__stage{position:relative;z-index:2;
+    --cw:min(70vw,45vh,420px);
+    --ch:calc(var(--cw) * 1.4155);
+    --ew:calc(var(--cw) * 1.075);
+    --eh:calc(var(--ew) * 0.66);
+    width:var(--ew);height:var(--eh);flex:0 0 auto;
+    perspective:1500px;perspective-origin:50% 48%;}
+  /* keeps the composition optically centred as the card comes out */
+  .inv__lift{position:absolute;inset:0;transform-style:preserve-3d;transform:translateY(0);}
+  .inv__fly{position:absolute;inset:0;transform-style:preserve-3d;
+    animation:flyIn 1.25s cubic-bezier(.16,.86,.24,1) both;}
+  .inv__scene{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;
+    transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));}
+
+  /* the card, tucked inside the envelope at rest */
+  .inv__card{position:absolute;left:50%;top:0;width:var(--cw);height:var(--ch);
+    margin-left:calc(var(--cw) / -2);border-radius:3px;
+    transform:translateY(0) translateZ(1px);
+    clip-path:inset(0 0 100% 0);
+    box-shadow:0 40px 90px rgba(0,0,0,0.72), 0 6px 18px rgba(0,0,0,0.5);}
+  .inv__paper{width:100%;height:100%;object-fit:cover;display:block;border-radius:3px;}
+
+  /* specular sheen that tracks the tilt */
+  .inv__sheen{position:absolute;inset:0;border-radius:3px;pointer-events:none;mix-blend-mode:soft-light;
+    background:linear-gradient(105deg,transparent 32%,rgba(255,250,235,0.55) 48%,rgba(255,250,235,0.16) 56%,transparent 70%);
+    background-size:260% 100%;background-position:var(--sheen,120%) 0;transition:background-position .18s linear;opacity:.85;}
+
+  /* warm glow over the candle flame in the artwork */
+  .inv__candle{position:absolute;left:85.4%;top:76.4%;width:0;height:0;pointer-events:none;}
+  .inv__candle::after{content:"";position:absolute;left:-4.2rem;top:-4.2rem;width:8.4rem;height:8.4rem;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,186,92,0.55) 0%,rgba(255,160,60,0.24) 34%,rgba(255,150,50,0) 68%);
+    mix-blend-mode:screen;animation:flicker 3.1s ease-in-out infinite;}
+  @keyframes flicker{
+    0%,100%{opacity:.62;transform:scale(1)}
+    12%{opacity:.9;transform:scale(1.07)}
+    22%{opacity:.55;transform:scale(.96)}
+    38%{opacity:.84;transform:scale(1.05)}
+    54%{opacity:.6;transform:scale(.99)}
+    71%{opacity:.95;transform:scale(1.09)}
+    86%{opacity:.66;transform:scale(1.01)}
+  }
+  /* faint glint on the martini */
+  .inv__glint{position:absolute;left:86%;top:38%;width:0;height:0;pointer-events:none;}
+  .inv__glint::after{content:"";position:absolute;left:-2.4rem;top:-2.4rem;width:4.8rem;height:4.8rem;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,244,214,0.4) 0%,rgba(255,244,214,0) 65%);
+    mix-blend-mode:screen;animation:glint 6.5s ease-in-out infinite;}
+  @keyframes glint{0%,72%,100%{opacity:.18}82%{opacity:.6}88%{opacity:.25}}
+
+  /* ---------- THE ENVELOPE ---------- */
+  .env{position:absolute;inset:0;
+    transform-style:preserve-3d;cursor:pointer;}
+  .env__back{position:absolute;inset:0;border-radius:4px;transform:translateZ(0);
+    background:linear-gradient(158deg,#e6d8bd 0%,#d5c39f 100%);
+    box-shadow:0 46px 96px rgba(0,0,0,0.74), 0 8px 22px rgba(0,0,0,0.5);}
+  .env__front{position:absolute;inset:0;border-radius:4px;transform:translateZ(2px);
+    background:linear-gradient(168deg,#f1e7d2 0%,#e4d5b5 54%,#d7c5a1 100%);
+    clip-path:polygon(0 0, 50% 47%, 100% 0, 100% 100%, 0 100%);}
+  .env__front::after{content:"";position:absolute;inset:0;border-radius:4px;
+    clip-path:polygon(0 0, 50% 47%, 100% 0, 100% 100%, 0 100%);
+    background:linear-gradient(180deg,rgba(120,92,48,0.16) 0%,rgba(120,92,48,0) 26%);}
+  .env__mono{position:absolute;left:0;right:0;bottom:15%;text-align:center;transform:translateZ(3px);
+    font-family:var(--font-ui);font-size:calc(var(--ew) * 0.052);letter-spacing:0.42em;
+    text-transform:uppercase;color:rgba(126,96,44,0.45);padding-left:0.42em;pointer-events:none;}
+  .env__flap{position:absolute;left:0;top:0;width:100%;height:47%;transform-origin:50% 0%;
+    transform:translateZ(4px) rotateX(0deg);
+    background:linear-gradient(180deg,#f3e9d5 0%,#e8d9ba 62%,#dbc8a3 100%);
+    clip-path:polygon(0 0, 100% 0, 50% 100%);}
+  .env__flap::after{content:"";position:absolute;inset:0;clip-path:polygon(0 0, 100% 0, 50% 100%);
+    background:linear-gradient(180deg,rgba(120,92,48,0) 55%,rgba(120,92,48,0.14) 100%);}
+
+  /* the wax seal, sitting on the flap tip */
+  .inv__seal{position:absolute;left:50%;top:47%;width:19.5%;aspect-ratio:200/162;
+    margin:0;padding:0;border:0;background:none;
+    transform:translate(-50%,-50%) translateZ(6px) scale(1) rotate(0deg);transform-origin:50% 50%;
+    cursor:pointer;animation:breathe 4.4s ease-in-out infinite;
+    filter:drop-shadow(0 4px 10px rgba(0,0,0,0.45));transition:filter .3s var(--ease);}
+  .inv__seal img{width:100%;height:100%;object-fit:contain;display:block;}
+  .inv__seal:hover,.inv__seal:focus-visible{filter:drop-shadow(0 6px 16px rgba(214,168,86,0.6)) brightness(1.07);outline:none;}
+  @keyframes breathe{
+    0%,100%{transform:translate(-50%,-50%) translateZ(6px) scale(1) rotate(0deg)}
+    50%{transform:translate(-50%,-50%) translateZ(6px) scale(1.05) rotate(-1.4deg)}
+  }
+
+  .inv__hint{font-family:var(--font-ui);font-size:0.68rem;font-weight:600;letter-spacing:0.34em;text-transform:uppercase;
+    color:var(--brass-bright);margin:0;opacity:0;animation:hintIn .9s var(--ease) 2.1s forwards;text-align:center;}
+  .inv__hint span{display:inline-block;animation:nudge 2.8s ease-in-out 3s infinite;}
+  @keyframes hintIn{to{opacity:.9}}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  .inv__skip{position:absolute;right:1.4rem;bottom:1.2rem;background:none;border:0;cursor:pointer;
+    font-family:var(--font-ui);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b6154;
+    padding:.6rem;transition:color .2s var(--ease);}
+  .inv__skip:hover{color:var(--brass);}
+
+  /* entrance: the envelope flies in from a distance */
+  @keyframes flyIn{
+    0%{opacity:0;transform:translate3d(0,16vh,-620px) rotateX(34deg) rotateZ(-7deg)}
+    62%{opacity:1}
+    100%{opacity:1;transform:translate3d(0,0,0) rotateX(0deg) rotateZ(0deg)}
+  }
+
+  /* ---------- THE OPEN ---------- */
+  /* 1. the seal breaks and falls */
+  .inv.is-opening .inv__seal{animation:sealOff .72s cubic-bezier(.3,.7,.2,1) forwards;}
+  @keyframes sealOff{
+    0%{transform:translate(-50%,-50%) translateZ(6px) scale(1) rotate(0deg);opacity:1}
+    26%{transform:translate(-50%,-62%) translateZ(30px) scale(1.2) rotate(-9deg);opacity:1}
+    100%{transform:translate(-50%,210%) translateZ(60px) scale(.78) rotate(36deg);opacity:0}
+  }
+  /* 2. the flap swings open */
+  .inv.is-opening .env__flap{animation:flapOpen .78s cubic-bezier(.42,0,.2,1) .18s forwards;}
+  @keyframes flapOpen{
+    0%{transform:translateZ(4px) rotateX(0deg)}
+    100%{transform:translateZ(-6px) rotateX(-168deg)}
+  }
+  /* 3. the card is drawn out. translateY and the clip move in lockstep. */
+  .inv.is-opening .inv__card{animation:cardOut .82s cubic-bezier(.32,.72,.2,1) .55s forwards,
+                                       cardOpen 1s cubic-bezier(.5,0,.2,1) 1.4s forwards;}
+  @keyframes cardOut{
+    0%{transform:translateY(0) translateZ(1px);clip-path:inset(0 0 100% 0)}
+    100%{transform:translateY(calc(var(--ch) * -0.72)) translateZ(1px);clip-path:inset(0 0 28% 0)}
+  }
+  .inv.is-opening .inv__lift{animation:lift 1.1s cubic-bezier(.32,.72,.2,1) .55s forwards;}
+  @keyframes lift{
+    0%{transform:translateY(0)}
+    100%{transform:translateY(calc(var(--ch) * 0.22))}
+  }
+  /* 4. the envelope falls away */
+  .inv.is-opening .env{animation:envDrop .62s cubic-bezier(.4,0,.7,1) 1.44s forwards;}
+  @keyframes envDrop{
+    0%{opacity:1;transform:translateY(0) scale(1) rotateX(0deg)}
+    100%{opacity:0;transform:translateY(9%) scale(.94) rotateX(14deg)}
+  }
+  /* 5. the card opens into the page */
+  @keyframes cardOpen{
+    0%{opacity:1;transform:translateY(calc(var(--ch) * -0.72)) translateZ(1px) rotateX(0) scale(1);clip-path:inset(0 0 28% 0)}
+    45%{opacity:1;transform:translateY(calc(var(--ch) * -0.60)) translateZ(1px) rotateX(-12deg) scale(1.12);clip-path:inset(0 0 0 0)}
+    100%{opacity:0;transform:translateY(calc(var(--ch) * -0.44)) translateZ(1px) rotateX(-40deg) scale(2.2);clip-path:inset(0 0 0 0);filter:blur(7px)}
+  }
+  .inv.is-opening .inv__hint,.inv.is-opening .inv__skip{opacity:0;transition:opacity .3s;}
+
+  /* page underneath */
+  .page{opacity:0;}
+  .page.is-in{animation:pageIn 1s var(--ease) forwards;}
+  @keyframes pageIn{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:none}}
+  .page.is-instant{opacity:1;}
+
+  @media (prefers-reduced-motion:reduce){
+    .inv{display:none;}
+    .page{opacity:1;animation:none;}
+    .inv__fly,.inv__lift,.inv__seal,.inv__candle::after,.inv__glint::after,.inv__hint span{animation:none;}
+  }
+  @media (max-width:600px){
+    .inv__stage{--cw:min(74vw,40vh,340px);}
+    .inv__candle::after{left:-3rem;top:-3rem;width:6rem;height:6rem;}
+  }
+
+
+  .rsvp-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin:0 0 3.6rem;position:relative;left:50%;transform:translateX(-50%);width:min(48rem,92vw);align-items:start;}
+  .rsvp-strip figure:nth-child(1){transform:translateY(1.1rem);}
+  .rsvp-strip figure:nth-child(2){transform:translateY(-1.3rem);}
+  .rsvp-strip figure:nth-child(3){transform:translateY(0.5rem);}
+  .rsvp-strip figure{position:relative;margin:0;aspect-ratio:3/4;overflow:hidden;background:var(--black);}
+  .rsvp-strip img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s var(--ease);}
+  .rsvp-strip figure:hover img{transform:scale(1.04);}
+  .rsvp-strip figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 0.6rem 0.9rem;background:linear-gradient(transparent,rgba(12,10,8,0.92));font-family:var(--font-ui);font-size:0.58rem;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--ivory);text-align:center;}
+  @media (max-width:600px){
+    .rsvp-strip figcaption{font-size:0.54rem;letter-spacing:0.16em;padding:1.2rem 0.4rem 0.7rem;}
+  }
+
+  .rsvp-close{position:relative;margin:3.5rem 0 0;height:44vh;min-height:15rem;overflow:hidden;}
+  .rsvp-close img{width:100%;height:100%;object-fit:cover;display:block;}
+  .rsvp-close::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,10,8,0.55),rgba(12,10,8,0.25) 45%,rgba(12,10,8,0.95));}
+  .rsvp-close__line{position:absolute;z-index:2;left:0;right:0;bottom:2.2rem;text-align:center;font-family:var(--font-display);font-size:clamp(1rem,2.4vw,1.3rem);color:var(--ivory);padding:0 1.5rem;margin:0;}
+
+  @media (max-width:640px){.nav{padding:1.2rem 1.4rem;}.nav__links{gap:1rem;}}
+</style>
+
+<style>
+  :where(a){color:#f4ecdf;text-decoration-color:rgba(198,154,78,0.6);text-underline-offset:0.2em;}
+  :where(a:visited){color:#f4ecdf;}
+  .pnav{position:absolute;top:0;left:0;right:0;z-index:30;background:linear-gradient(180deg,rgba(8,7,5,0.72),rgba(8,7,5,0));display:flex;align-items:center;justify-content:space-between;padding:1.4rem 2rem;font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;}
+  .pnav__brand{letter-spacing:0.34em;font-size:0.95rem;color:#f4ecdf;text-decoration:none;padding-left:0.34em;text-shadow:0 1px 20px rgba(0,0,0,0.6);}
+  .pnav__links{display:flex;align-items:center;gap:1.35rem;text-align:left;}
+  .pnav__links>a,.pnav__spbtn{font-family:inherit;color:#f4ecdf;text-decoration:none;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0.9;white-space:nowrap;transition:color .2s ease,opacity .2s ease;text-shadow:0 1px 18px rgba(0,0,0,0.7);background:none;border:0;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;}
+  .pnav__links>a:hover,.pnav__links>a[aria-current="page"],.pnav__spbtn:hover,.pnav__sp.is-open .pnav__spbtn,.pnav__sp.is-current .pnav__spbtn{color:#e0b666;opacity:1;}
+  .pnav__spbtn::after{content:"";width:0.38rem;height:0.38rem;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s ease;}
+  .pnav__sp.is-open .pnav__spbtn::after{transform:rotate(-135deg) translateY(-1px);}
+  .pnav__sp{position:relative;}
+  .pnav__panel{position:absolute;top:calc(100% + 1.1rem);left:50%;transform:translateX(-50%);width:min(46rem,92vw);display:none;grid-template-columns:repeat(3,1fr);gap:0.9rem;background:rgba(12,10,8,0.97);border:1px solid rgba(198,154,78,0.25);padding:1rem;border-radius:3px;box-shadow:0 20px 60px rgba(0,0,0,0.55);}
+  .pnav__sp.is-open .pnav__panel{display:grid;}
+  .pnav__card{display:block;text-decoration:none;color:#f4ecdf;text-align:center;}
+  .pnav__card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px;display:block;transition:opacity .2s ease;}
+  .pnav__card:hover img{opacity:0.85;}
+  .pnav__card small{display:block;margin:0.75rem 0 0.2rem;font-size:0.58rem;letter-spacing:0.24em;text-transform:uppercase;color:#c69a4e;}
+  .pnav__card b{display:block;font-family:"Lora",Georgia,serif;font-weight:400;font-size:1.08rem;}
+  .pnav__card span{display:block;margin-top:0.3rem;font-size:0.8rem;line-height:1.5;color:#a89a85;text-transform:none;letter-spacing:0;}
+  .pnav__wa{color:#f4ecdf !important;}
+  .pnav__links a.pnav__book{color:#0c0a08;background:#c69a4e;opacity:1;padding:0.6rem 0.95rem;border-radius:2px;text-shadow:none;font-weight:600;}
+  .pnav__links a.pnav__book:hover{background:#e0b666;color:#0c0a08;}
+  .pnav__toggle{display:none;background:none;border:1px solid rgba(198,154,78,0.55);color:#f4ecdf;font-family:inherit;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.55rem 0.85rem;border-radius:2px;cursor:pointer;}
+  @media (max-width:1180px){
+    .pnav{padding:1.1rem 1.3rem;}
+    .pnav__toggle{display:block;}
+    .pnav__links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(12,10,8,0.98);padding:0.4rem 1.4rem 1.4rem;border-bottom:1px solid rgba(198,154,78,0.2);max-height:calc(100svh - 4.5rem);overflow-y:auto;}
+    .pnav.is-open{background:rgba(12,10,8,0.98);}
+    .pnav.is-open .pnav__links{display:flex;}
+    .pnav__links>a,.pnav__spbtn{font-size:0.8rem;padding:0.95rem 0;border-bottom:1px solid rgba(198,154,78,0.12);text-shadow:none;width:100%;justify-content:space-between;}
+    .pnav__panel{position:static;transform:none;width:auto;grid-template-columns:1fr;gap:0;padding:0.2rem 0 0.6rem;border:0;box-shadow:none;background:none;}
+    .pnav__card{display:grid;grid-template-columns:4.6rem 1fr;grid-template-rows:auto auto auto;gap:0 0.9rem;align-items:start;padding:0.7rem 0;border-bottom:1px solid rgba(198,154,78,0.08);text-align:left;}
+    .pnav__card img{grid-row:1 / span 3;width:4.6rem;height:4.6rem;aspect-ratio:auto;}
+    .pnav__card span{font-size:0.78rem;margin-top:0.15rem;}
+    .pnav__card small{margin:0 0 0.15rem;}
+    .pnav__links a.pnav__wa{justify-content:flex-start;gap:0.6rem;}
+    .pnav__links a.pnav__book{margin-top:1.1rem;text-align:center;justify-content:center;padding:0.95rem;border-bottom:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="inv" id="inv" role="dialog" aria-label="PESO invitation">
+  <div class="amb" id="amb" aria-hidden="true">
+    <i class="a-palm1"></i><i class="a-palm2"></i><i class="a-candle"></i><i class="a-martini"></i><i class="a-olives"></i>
+  </div>
+  <div class="inv__stage" id="invStage">
+   <div class="inv__lift">
+    <div class="inv__fly">
+    <div class="inv__scene" id="invScene">
+      <div class="inv__card" id="invCard">
+        <picture>
+          <source srcset="card-base.webp" type="image/webp">
+          <img class="inv__paper" src="card-base.jpg" alt="Invitation to PESO's private friends and family launch, Thursday 12 November, from 6pm" width="1054" height="1492">
+        </picture>
+        <div class="inv__sheen" id="invSheen" aria-hidden="true"></div>
+        <div class="inv__candle" aria-hidden="true"></div>
+        <div class="inv__glint" aria-hidden="true"></div>
+      </div>
+      <div class="env" id="invEnv">
+        <div class="env__back" aria-hidden="true"></div>
+        <div class="env__front" aria-hidden="true"></div>
+        <div class="env__mono" aria-hidden="true">Peso</div>
+        <div class="env__flap" aria-hidden="true"></div>
+        <button class="inv__seal" id="invSeal" type="button" aria-label="Break the seal to open the invitation">
+          <img src="seal.png" alt="" width="200" height="162">
+        </button>
+      </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <p class="inv__hint" id="invHint"><span>Break the seal</span></p>
+  <button class="inv__skip" id="invSkip" type="button">Skip</button>
+</div>
+
+<div class="page" id="page">
+<nav class="pnav" id="pnav" aria-label="Main">
+  <a class="pnav__brand" href="/">PESO</a>
+  <button class="pnav__toggle" type="button" aria-expanded="false" aria-controls="pnavLinks">Menu</button>
+  <div class="pnav__links" id="pnavLinks"><a href="/menu">Menu</a><div class="pnav__sp"><button class="pnav__spbtn" type="button" aria-expanded="false">Spaces</button><div class="pnav__panel"><a class="pnav__card" href="/tapas-courtyard"><img src="peso-night-070-t.jpg" alt="Tapas Courtyard at PESO" loading="lazy" width="480" height="320"><small>Ground floor</small><b>Tapas Courtyard</b><span>Palms overhead, plates in the middle, and nobody in a hurry.</span></a><a class="pnav__card" href="/cocktail-lounge"><img src="peso-night-054-t.jpg" alt="Cocktail Lounge at PESO" loading="lazy" width="480" height="320"><small>Upstairs</small><b>Cocktail Lounge</b><span>Under the disco balls. Happy hour 5 to 7, DJs after dinner.</span></a><a class="pnav__card" href="/the-kitchen"><img src="peso-night-103-t.jpg" alt="The Kitchen at PESO" loading="lazy" width="480" height="320"><small>The speakeasy</small><b>The Kitchen</b><span>Seven cocktails the chef never wrote down. Ask for it.</span></a></div></div><a href="/a-night-at-peso">A Night at PESO</a><a href="/find-us">Find Us</a><a href="/story">Our Story</a><a class="pnav__wa" href="https://wa.me/6285295225780" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>WhatsApp</a><a class="pnav__book" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search" target="_blank" rel="noopener">Book a table</a></div>
+</nav>
+<script>(function(){var n=document.getElementById("pnav"),b=n.querySelector(".pnav__toggle"),sp=n.querySelector(".pnav__sp"),sb=sp.querySelector(".pnav__spbtn");b.addEventListener("click",function(){var o=n.classList.toggle("is-open");b.setAttribute("aria-expanded",o);b.textContent=o?"Close":"Menu";});sb.addEventListener("click",function(e){e.stopPropagation();var o=sp.classList.toggle("is-open");sb.setAttribute("aria-expanded",o);});var hov=window.matchMedia("(hover:hover) and (min-width:1181px)");sp.addEventListener("mouseenter",function(){if(hov.matches){sp.classList.add("is-open");sb.setAttribute("aria-expanded",true);}});sp.addEventListener("mouseleave",function(){if(hov.matches){sp.classList.remove("is-open");sb.setAttribute("aria-expanded",false);}});document.addEventListener("click",function(e){if(hov.matches&&!sp.contains(e.target)){sp.classList.remove("is-open");}});document.addEventListener("keydown",function(e){if(e.key==="Escape"){sp.classList.remove("is-open");}});})();</script>
+
+<header class="faq-hero">
+  <div class="faq-hero__bg"></div>
+  <div class="faq-hero__scrim"></div>
+  <div class="faq-hero__inner">
+    <p class="eyebrow">Friends &amp; Family</p>
+    <h1>You are invited to<br>our soft opening</h1>
+    <p class="loc">Bingin &middot; Uluwatu &middot; Bali</p>
+    <p class="strict"><span>Strictly invitation only</span></p>
+  </div>
+</header>
+
+<main class="rsvp">
+  <span class="acc acc-palm" aria-hidden="true"></span><span class="acc acc-gin" aria-hidden="true"></span>
+  <div class="rule"></div>
+  <dl class="rsvp__when">
+    <dt>When</dt>
+    <dd>Thursday 12 November 2026<br>From 6:00pm</dd>
+    <dt>Where</dt>
+    <dd><a href="https://www.google.com/maps/search/?api=1&amp;query=54P8%2BMPG%2C+Jl.+Buana+Sari%2C+Pecatu%2C+Kec.+Kuta+Sel.%2C+Kabupaten+Badung%2C+Bali+80361" target="_blank" rel="noopener">Jl. Buana Sari, Pecatu<br>Bingin, Uluwatu, Bali 80361</a></dd>
+    <dt>On the night</dt>
+    <dd>Drinks and canap&eacute;s on us, 6:00pm to 8:00pm<br>Half price drinks for the rest of the night</dd>
+  </dl>
+
+  <div class="rsvp-strip">
+    <figure><img src="courtyard.jpg" alt="Guests raising a toast around the long communal table in the PESO courtyard" loading="lazy" width="1000" height="1249"><figcaption>The Courtyard</figcaption></figure>
+    <figure><img src="tapas.jpg" alt="Shared tapas plates on the table at PESO" loading="lazy"><figcaption>The Food</figcaption></figure>
+    <figure><img src="lounge.jpg" alt="The low-lit cocktail lounge on the second level at PESO" loading="lazy"><figcaption>The Lounge</figcaption></figure>
+  </div>
+
+  <div class="rule"></div>
+
+  <p class="rsvp__lead">A first night before the doors open properly. The courtyard and the lounge, the food and the drinks, and the people we want in the room first. Let us know if you can make it.</p>
+  <p class="rsvp__note">This invitation is strictly for you and the guests you list below. Please do not forward the link.</p>
+
+  <form class="rsvp__form" id="rsvpForm" novalidate>
+    <div>
+      <label class="fl" for="fullName">Full name</label>
+      <input class="field" type="text" id="fullName" name="full_name" placeholder="Your full name" autocomplete="name" required>
+    </div>
+    <div>
+      <label class="fl" for="mobile">Mobile number</label>
+      <input class="field" type="tel" id="mobile" name="mobile" placeholder="+62 812 3456 7890" autocomplete="tel" inputmode="tel" required>
+    </div>
+    <div>
+      <label class="fl" for="email">Email address</label>
+      <input class="field" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+    </div>
+
+    <label class="check"><input type="checkbox" id="inBali" name="in_bali"><span>I live in Bali</span></label>
+    <div class="guestq" role="radiogroup" aria-labelledby="guestqLabel">
+      <span class="fl" id="guestqLabel">Are you bringing a guest?</span>
+      <div class="seg">
+        <label class="seg__opt"><input type="radio" name="bringing" value="no" id="guestNo"><span>No</span></label>
+        <label class="seg__opt"><input type="radio" name="bringing" value="yes" id="guestYes"><span>Yes</span></label>
+      </div>
+    </div>
+    <div class="guests" id="guestWrap" hidden>
+      <label class="fl" for="guestCount">How many guests are you bringing?</label>
+      <div class="stepper">
+        <button class="stepper__btn" type="button" id="guestMinus" aria-label="One fewer guest">&minus;</button>
+        <input class="stepper__num" type="number" id="guestCount" name="guest_count" value="1" min="1" max="10" step="1" inputmode="numeric" autocomplete="off">
+        <button class="stepper__btn" type="button" id="guestPlus" aria-label="One more guest">+</button>
+      </div>
+      <p class="guests__note">Not counting yourself.</p>
+    </div>
+
+    <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <button class="btn" type="submit" id="rsvpBtn">Confirm my RSVP</button>
+    <p class="msg" id="rsvpMsg" role="status" aria-live="polite"></p>
+  </form>
+
+  <div class="done" id="rsvpDone">
+    <h2>You are on the list.</h2>
+    <p>Thursday 12 November, from 6:00pm.<br>We will send the details closer to the night.</p>
+    <p class="sm">Something changed? Email <a href="mailto:contact@pesobali.com" style="color:var(--brass);text-decoration:none;border-bottom:1px solid var(--brass-dim);">contact@pesobali.com</a>.</p>
+  </div>
+</main>
+
+<div class="rsvp-close">
+  <img src="golden-hour.jpg" alt="Golden hour at PESO in Bingin, Uluwatu" loading="lazy">
+  <p class="rsvp-close__line">Come for one thing. Stay for everything.</p>
+</div>
+
+<footer class="foot">
+  <div class="foot__social">
+    <a href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search" target="_blank" rel="noopener">Book a table</a>
+    <a href="/menu">Menu</a>
+    <a href="/find-us">Find Us</a>
+    <a href="/a-night-at-peso">A Night at PESO</a>
+    <a href="/story">Our Story</a>
+    <a href="/faq">FAQ</a>
+    <a href="/privacy">Privacy</a>
+    <a href="https://www.instagram.com/peso_bali/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://wa.me/6285295225780" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="mailto:contact@pesobali.com">contact@pesobali.com</a>
+    <a href="tel:+6285295225780">+62 852-9522-5780</a>
+  </div>
+  <p class="foot__loc"><a href="/find-us">Jl. Buana Sari, Pecatu &middot; Bingin, Uluwatu &middot; Bali 80361</a> &middot; Open daily 12pm to 11pm</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var COMPANY = 'U2AHmv';
+  var LIST    = 'UjuMMb';          // Soft Opening RSVP - Thu 12 Nov 2026
+  var EVENT   = 'soft-opening-2026-11-12';
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  var form = document.getElementById('rsvpForm');
+  var done = document.getElementById('rsvpDone');
+  var btn  = document.getElementById('rsvpBtn');
+  var msg  = document.getElementById('rsvpMsg');
+
+  function say(t, isErr){ msg.textContent = t || ''; msg.className = 'msg' + (isErr ? ' err' : ''); }
+
+  // Yes reveals the count. No hides it and resets it, so a change of mind
+  // can never leave a stale number on the payload.
+  var guestYes  = document.getElementById('guestYes');
+  var guestNo   = document.getElementById('guestNo');
+  var guestWrap = document.getElementById('guestWrap');
+  var guestNum  = document.getElementById('guestCount');
+  var GMIN = 1, GMAX = 10;
+
+  function guestVal(){
+    var n = parseInt(guestNum.value, 10);
+    if (isNaN(n)) return NaN;
+    return Math.max(GMIN, Math.min(GMAX, n));
+  }
+  function syncStepper(){
+    var n = guestVal();
+    document.getElementById('guestMinus').disabled = !(n > GMIN);
+    document.getElementById('guestPlus').disabled  = !(n < GMAX);
+  }
+  function bump(d){
+    var n = guestVal(); if (isNaN(n)) n = GMIN;
+    guestNum.value = Math.max(GMIN, Math.min(GMAX, n + d));
+    syncStepper(); say('');
+  }
+  document.getElementById('guestMinus').addEventListener('click', function(){ bump(-1); });
+  document.getElementById('guestPlus').addEventListener('click', function(){ bump(1); });
+  guestNum.addEventListener('input', function(){ syncStepper(); say(''); });
+  guestNum.addEventListener('blur', function(){
+    var n = guestVal(); guestNum.value = isNaN(n) ? GMIN : n; syncStepper();
+  });
+
+  function onBringing(){
+    var yes = guestYes.checked;
+    guestWrap.hidden = !yes;
+    if (yes){ guestNum.focus(); guestNum.select(); }
+    else { guestNum.value = GMIN; }
+    syncStepper(); say('');
+  }
+  guestYes.addEventListener('change', onBringing);
+  guestNo.addEventListener('change', onBringing);
+  syncStepper();
+
+  // Indonesian-friendly E.164 normalisation. Returns null when we are not confident.
+  function toE164(raw){
+    var d = String(raw || '').replace(/[\s\-().]/g, '');
+    if (/^\+[1-9]\d{7,14}$/.test(d)) return d;
+    if (/^62\d{8,13}$/.test(d))       return '+' + d;
+    if (/^0\d{8,12}$/.test(d))        return '+62' + d.slice(1);
+    if (/^8\d{7,12}$/.test(d))        return '+62' + d;
+    return null;
+  }
+
+  function splitName(full){
+    var p = String(full || '').trim().replace(/\s+/g, ' ').split(' ');
+    return { first: p.shift() || '', last: p.join(' ') };
+  }
+
+  var HDRS = { 'Content-Type': 'application/json', 'revision': '2024-10-15' };
+
+  // 1) Consent + list membership. EMAIL ONLY on purpose: sending a phone number to the
+  // subscriptions endpoint makes Klaviyo record SMS marketing consent, which nobody gave us.
+  function subscribe(attrs){
+    return fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + COMPANY, {
+      method: 'POST',
+      headers: HDRS,
+      body: JSON.stringify({
+        data: {
+          type: 'subscription',
+          attributes: {
+            custom_source: 'RSVP - Soft Opening 12 Nov 2026',
+            profile: { data: { type: 'profile', attributes: attrs } }
+          },
+          relationships: { list: { data: { type: 'list', id: LIST } } }
+        }
+      })
+    });
+  }
+
+  // 2) Store the mobile number on the profile. This endpoint does not imply consent,
+  // so the number is on file for the event without opting anyone in to SMS marketing.
+  function saveProfile(attrs){
+    return fetch('https://a.klaviyo.com/client/profiles/?company_id=' + COMPANY, {
+      method: 'POST',
+      headers: HDRS,
+      body: JSON.stringify({ data: { type: 'profile', attributes: attrs } })
+    });
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    if (form.company.value.trim() !== '') { form.classList.add('hide'); done.classList.add('show'); return; }
+
+    var full   = document.getElementById('fullName').value.trim();
+    var mobile = document.getElementById('mobile').value.trim();
+    var email  = document.getElementById('email').value.trim();
+    var inBali = document.getElementById('inBali').checked;
+    var answered = guestYes.checked || guestNo.checked;
+    var plus1  = guestYes.checked;
+    var guests = plus1 ? guestVal() : 0;
+
+    if (full.length < 2)        return say('Please enter your full name.', true);
+    if (mobile.length < 6)      return say('Please enter a mobile number we can reach you on.', true);
+    if (!EMAIL_RE.test(email))  return say('Please enter a valid email address.', true);
+    if (!answered)              return say('Please let us know if you are bringing a guest.', true);
+    if (plus1 && (isNaN(guests) || guests < 1)) { guestNum.focus(); return say('Please enter how many guests you are bringing.', true); }
+
+    btn.disabled = true; btn.textContent = 'Sending...'; say('');
+
+    var n = splitName(full);
+    var e164 = toE164(mobile);
+    var attrs = {
+      email: email,
+      first_name: n.first,
+      last_name: n.last,
+      properties: {
+        full_name: full,
+        mobile: mobile,
+        mobile_e164: e164 || '',
+        lives_in_bali: inBali,
+        bringing_guest: plus1,
+        guest_count: guests,
+        party_size: 1 + guests,
+        rsvp_event: EVENT,
+        rsvp_status: 'attending'
+      }
+    };
+
+    try {
+      // Consent call first, email only. This is the one that must succeed.
+      var res = await subscribe(attrs);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      // Then attach the mobile number. Best effort: if Klaviyo rejects the phone
+      // format we still keep the raw number in properties, so no RSVP is ever lost.
+      try {
+        var withPhone = Object.assign({}, attrs);
+        if (e164) withPhone.phone_number = e164;
+        var pr = await saveProfile(withPhone);
+        if (!pr.ok && e164) await saveProfile(attrs);
+      } catch (ignored) {}
+
+      form.classList.add('hide');
+      done.classList.add('show');
+      done.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Confirm my RSVP';
+      say('That did not go through. Please try again, or email contact@pesobali.com and we will add you.', true);
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var inv=document.getElementById('inv'), page=document.getElementById('page');
+  if(!inv||!page) return;
+  var scene=document.getElementById('invScene'), card=document.getElementById('invCard'),
+      seal=document.getElementById('invSeal'), env=document.getElementById('invEnv'),
+      sheen=document.getElementById('invSheen'), stage=document.getElementById('invStage'),
+      skip=document.getElementById('invSkip'), hint=document.getElementById('invHint');
+  var amb=document.getElementById('amb');
+  var ambEls = amb ? amb.querySelectorAll('i') : [];
+  var ambDepth = [3.2, 2.6, 1.9, 1.4, 1.1];
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seen = false;
+  try { seen = sessionStorage.getItem('peso_inv_seen')==='1'; } catch(e){}
+
+  function showPage(instant){
+    // A hidden tab freezes CSS animations at 0%, which would leave the page
+    // invisible. Fall back to the instant reveal in that case.
+    if(instant || document.hidden){ page.classList.remove('is-in'); page.classList.add('is-instant'); }
+    else { page.classList.add('is-in'); }
+    document.body.style.overflow='';
+  }
+  function forceVisible(){
+    if(getComputedStyle(page).opacity === '0'){
+      page.classList.remove('is-in'); page.classList.add('is-instant');
+    }
+  }
+  function finish(){
+    inv.classList.add('is-gone');
+    try { sessionStorage.setItem('peso_inv_seen','1'); } catch(e){}
+  }
+  if(reduce || seen){ inv.classList.add('is-gone'); showPage(true); return; }
+
+  document.body.style.overflow='hidden';
+
+  // pointer / gyro parallax on the whole scene, so envelope and card tilt together
+  var rx=0, ry=0, tx=0, ty=0, raf=null;
+  function loop(){
+    rx += (tx-rx)*0.09; ry += (ty-ry)*0.09;
+    scene.style.setProperty('--rx', rx.toFixed(2)+'deg');
+    scene.style.setProperty('--ry', ry.toFixed(2)+'deg');
+    if(sheen) sheen.style.setProperty('--sheen', (50 - ry*4.2).toFixed(1)+'%');
+    if(amb){ for(var i=0;i<ambEls.length;i++){ var d=ambDepth[i];
+      ambEls[i].style.setProperty('--px', (-ry*d).toFixed(1)+'px');
+      ambEls[i].style.setProperty('--py', (rx*d*0.7).toFixed(1)+'px'); } }
+    raf = requestAnimationFrame(loop);
+  }
+  raf = requestAnimationFrame(loop);
+  function onMove(e){
+    var r = stage.getBoundingClientRect();
+    var cx = r.left + r.width/2, cy = r.top + r.height/2;
+    ty = Math.max(-9, Math.min(9, (e.clientX - cx)/r.width*16));
+    tx = Math.max(-7, Math.min(7, -(e.clientY - cy)/r.height*12));
+  }
+  window.addEventListener('pointermove', onMove, {passive:true});
+  window.addEventListener('deviceorientation', function(e){
+    if(e.gamma==null) return;
+    ty = Math.max(-9, Math.min(9, e.gamma/4));
+    tx = Math.max(-7, Math.min(7, ((e.beta||0)-45)/6));
+  }, {passive:true});
+
+  // An early tap is queued rather than ignored, so nothing feels dead.
+  var armed=false, queued=false;
+  setTimeout(function(){ armed=true; if(queued) open(); }, 1050);
+
+  var opening=false;
+  function open(){
+    if(opening) return;
+    if(!armed){ queued=true; return; }
+    opening=true;
+    window.removeEventListener('pointermove', onMove);
+    inv.classList.add('is-opening');
+    setTimeout(showPage, 1950);
+    setTimeout(function(){ cancelAnimationFrame(raf); finish(); }, 2700);
+    setTimeout(forceVisible, 5000);
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden) setTimeout(forceVisible, 1200); });
+  }
+  seal.addEventListener('click', function(e){ e.stopPropagation(); open(); });
+  env.addEventListener('click', open);
+  function bail(){ cancelAnimationFrame(raf); inv.classList.add('is-gone'); showPage(true); finish(); }
+  skip.addEventListener('click', bail);
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ bail(); }
+    if(e.key==='Enter'||e.key===' '){ if(document.activeElement===seal){ e.preventDefault(); open(); } }
+  });
+})();
+</script>
+</body>
+</html>
