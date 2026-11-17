@@ -216,11 +216,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @keyframes pnavIn{from{transform:translateY(-100%)}to{transform:none}}
   .wa-ico{color:#25D366;}
   .pnav__quick .q-wa{border-color:#25D366 !important;}
-  .fab{position:fixed;right:1.2rem;bottom:1.2rem;z-index:40;display:flex;align-items:center;gap:0.7rem;}
-  .book-float{display:inline-flex;align-items:center;height:3.5rem;padding:0 1.4rem;border-radius:999px;background:#c69a4e;color:#0c0a08;text-decoration:none;font-family:"Inter",-apple-system,sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;box-shadow:0 8px 28px rgba(0,0,0,0.45);transition:transform .2s ease,background .2s ease;}
+  .fab{position:fixed;right:5.6rem;bottom:1.5rem;z-index:9997;display:flex;align-items:center;gap:0.7rem;}
+  .book-float{display:inline-flex;align-items:center;height:3.4rem;padding:0 1.4rem;border-radius:999px;background:#c69a4e;color:#0c0a08;text-decoration:none;font-family:"Inter",-apple-system,sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;box-shadow:0 8px 28px rgba(0,0,0,0.45);transition:transform .2s ease,background .2s ease;}
   .book-float:hover{background:#e0b666;transform:translateY(-2px);}
-  @media (max-width:640px){.fab{right:0.9rem;bottom:0.9rem;}.book-float{height:3.2rem;padding:0 1.2rem;}.wa-float{width:3.2rem !important;height:3.2rem !important;}}
-  .wa-float{position:relative;width:3.5rem;height:3.5rem;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(0,0,0,0.45);transition:transform .2s ease;}
+  @media (max-width:640px){.fab{right:4.9rem;bottom:1rem;gap:0.55rem;}.book-float{height:3.4rem;padding:0 1.15rem;font-size:0.7rem;}}
+  .wa-float{position:relative;width:3.4rem;height:3.4rem;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(0,0,0,0.45);transition:transform .2s ease;}
   .wa-float:hover{transform:scale(1.06);}
   .wa-float svg{width:1.9rem;height:1.9rem;color:#fff;}
   .wa-float__tip{position:absolute;right:4.1rem;white-space:nowrap;background:rgba(12,10,8,0.95);color:#f4ecdf;font-size:0.72rem;letter-spacing:0.04em;padding:0.45rem 0.7rem;border-radius:3px;border:1px solid rgba(37,211,102,0.4);opacity:0;pointer-events:none;transition:opacity .2s ease;}
@@ -349,5 +349,122 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <p class="foot__loc"><a href="/find-us">Jl. Buana Sari, Pecatu &middot; Bingin, Uluwatu &middot; Bali 80361</a> &middot; Open daily 12pm to 11pm</p>
 </footer>
+<!-- PESO chat widget -->
+<style>
+  .pchat-btn{position:fixed;right:1.5rem;bottom:1.5rem;z-index:9998;width:3.4rem;height:3.4rem;border-radius:50%;border:1px solid rgba(198,154,78,0.45);background:#c69a4e;color:#0c0a08;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.5);transition:transform .2s cubic-bezier(.16,.8,.24,1),background .2s;}
+  .pchat-btn:hover{background:#e0b666;transform:translateY(-2px);}
+  .pchat-btn svg{width:1.45rem;height:1.45rem;}
+  .pchat-btn.is-open .pchat-ico-chat{display:none;}
+  .pchat-btn:not(.is-open) .pchat-ico-close{display:none;}
+  .pchat{position:fixed;right:1.5rem;bottom:5.6rem;z-index:9999;width:min(92vw,22.5rem);height:min(72vh,32rem);background:#12100c;border:1px solid rgba(198,154,78,0.28);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.65);display:none;flex-direction:column;overflow:hidden;font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .pchat.is-open{display:flex;}
+  .pchat__head{padding:1rem 1.1rem;border-bottom:1px solid rgba(198,154,78,0.18);}
+  .pchat__title{font-family:"Lora",Georgia,"Times New Roman",serif;font-size:1rem;color:#f4ecdf;margin:0;font-weight:400;}
+  .pchat__sub{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#8a7d6b;margin:0.3rem 0 0;}
+  .pchat__body{flex:1;overflow-y:auto;display:flex;flex-direction:column;}
+  .pchat__log{padding:1.1rem 1.1rem 0.4rem;display:flex;flex-direction:column;gap:0.75rem;}
+  .pchat__msg{max-width:88%;padding:0.7rem 0.9rem;border-radius:3px;font-size:0.86rem;line-height:1.65;}
+  .pchat__msg--bot{align-self:flex-start;background:rgba(244,236,223,0.06);color:#cdbfa9;}
+  .pchat__msg--me{align-self:flex-end;background:rgba(198,154,78,0.16);color:#f4ecdf;}
+  .pchat__msg a{color:#c69a4e;text-decoration:none;border-bottom:1px solid rgba(198,154,78,0.5);}
+  .pchat__msg a:hover{color:#e0b666;}
+  .pchat__opts{padding:0 1.1rem 1.1rem;display:flex;flex-direction:column;gap:0.45rem;}
+  .pchat__opt{text-align:left;background:none;border:1px solid rgba(198,154,78,0.3);color:#c69a4e;border-radius:2px;padding:0.6rem 0.75rem;font-size:0.79rem;line-height:1.4;cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s;}
+  .pchat__opt:hover{background:rgba(198,154,78,0.1);border-color:rgba(198,154,78,0.55);}
+  @media (max-width:640px){.pchat{right:0.75rem;left:0.75rem;width:auto;bottom:5rem;}.pchat-btn{right:1rem;bottom:1rem;}}
+</style>
+<button class="pchat-btn" id="pchatBtn" aria-label="Open chat">
+  <svg class="pchat-ico-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.6-.7L3 21l1.9-4.9A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/></svg>
+  <svg class="pchat-ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 6 6 18M6 6l12 12"/></svg>
+</button>
+<div class="pchat" id="pchat" role="dialog" aria-label="PESO questions">
+  <div class="pchat__head">
+    <p class="pchat__title">Ask us anything</p>
+    <p class="pchat__sub">PESO &middot; Bingin, Uluwatu</p>
+  </div>
+  <div class="pchat__body" id="pchatBody">
+    <div class="pchat__log" id="pchatLog"></div>
+    <div class="pchat__opts" id="pchatOpts"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var MAPS='https://www.google.com/maps/search/?api=1&query=54P8%2BMPG%2C+Jl.+Buana+Sari%2C+Pecatu%2C+Kec.+Kuta+Sel.%2C+Kabupaten+Badung%2C+Bali+80361';
+  var TOPICS=[
+    {q:'When are you open?',
+     a:'Every day, 12pm to 11pm. Lunch and dinner in the courtyard; the Cocktail Lounge upstairs opens at 5pm. Happy hour is 5pm to 7pm. <a href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search" target="_blank" rel="noopener">Book a table</a>.'},
+    {q:'Where are you?',
+     a:'Jl. Buana Sari, Pecatu, Bali 80361, in the Bingin area of Uluwatu, next to 7AM Bakers. <a href="/find-us">Find us</a> or <a href="'+MAPS+'" target="_blank" rel="noopener">open in Google Maps</a>.'},
+    {q:'What kind of place is PESO?',
+     a:'An all-day courtyard with a cocktail lounge above it. Downstairs runs from lunch into the evening, with tapas and plates made for sharing. Upstairs is quieter and later: cocktails, wine, and the Uluwatu light going down. <a href="/story">Read our story</a>.'},
+    {q:'Can I book a table?',
+     a:'Yes. <a href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search" target="_blank" rel="noopener">Book online through SevenRooms</a>. For large groups or private events, email <a href="mailto:contact@pesobali.com">contact@pesobali.com</a>.'},
+    {q:'Private events or weddings?',
+     a:'Email <a href="mailto:contact@pesobali.com">contact@pesobali.com</a> with your dates and rough numbers. We have a ten-seat private room as well as the courtyard and the lounge.'},
+    {q:'What is on the menu?',
+     a:'Mediterranean-inspired tapas, oysters and a raw bar, plates from the wood fire, Wagyu from the grill, and a full cocktail and wine list. <a href="/menu">See the menu</a>.'},
+    {q:'Do you have live music?',
+     a:'Yes. Jazz night every Wednesday and live bands Thursday to Saturday, all from 6pm. <a href="/whats-on">See what&rsquo;s on</a>.'},
+    {q:'Is there a happy hour?',
+     a:'Yes. Every day from 5pm to 7pm, selected cocktails and wine are IDR 100k.'},
+    {q:'How do I keep up with PESO?',
+     a:'Join the email list on the <a href="/">home page</a>, or follow <a href="https://www.instagram.com/peso_bali/" target="_blank" rel="noopener">@peso_bali</a>. The list hears our news first.'},
+    {q:'How do I contact you?',
+     a:'WhatsApp or call <a href="https://wa.me/6285295225780?text=Hi%20PESO%2C%20" target="_blank" rel="noopener">+62 852-9522-5780</a>, or email <a href="mailto:contact@pesobali.com">contact@pesobali.com</a>.'},
+    {q:'Something else',
+     a:'Email <a href="mailto:contact@pesobali.com">contact@pesobali.com</a>. It reaches us directly and we read everything.'}
+  ];
+  var btn=document.getElementById('pchatBtn'),panel=document.getElementById('pchat'),
+      body=document.getElementById('pchatBody'),log=document.getElementById('pchatLog'),
+      opts=document.getElementById('pchatOpts'),started=false;
+  function add(html,kind){
+    var d=document.createElement('div');
+    d.className='pchat__msg pchat__msg--'+kind;
+    d.innerHTML=html;
+    log.appendChild(d);
+    return d;
+  }
+  function mkBtn(label,fn){
+    var b=document.createElement('button');
+    b.className='pchat__opt';b.type='button';b.textContent=label;
+    b.addEventListener('click',fn);
+    return b;
+  }
+  function showList(){
+    opts.innerHTML='';
+    TOPICS.forEach(function(t){
+      opts.appendChild(mkBtn(t.q,function(){ answer(t); }));
+    });
+  }
+  function showAskAnother(){
+    opts.innerHTML='';
+    opts.appendChild(mkBtn('Ask another question',function(){
+      showList();
+      body.scrollTop=body.scrollHeight;
+    }));
+  }
+  function answer(t){
+    add(t.q,'me');
+    showAskAnother();
+    setTimeout(function(){
+      var el=add(t.a,'bot');
+      // put the ANSWER at the top of the visible area, not the bottom of the panel
+      body.scrollTop=el.offsetTop-log.offsetTop;
+    },220);
+  }
+  function start(){
+    if(started)return;started=true;
+    add('Hello. We are open every day from 12pm to 11pm. Pick a question below.','bot');
+    showList();
+  }
+  btn.addEventListener('click',function(){
+    var open=panel.classList.toggle('is-open');
+    btn.classList.toggle('is-open',open);
+    btn.setAttribute('aria-label',open?'Close chat':'Open chat');
+    if(open)start();
+  });
+})();
+</script>
+<!-- End PESO chat widget -->
 </body>
 </html>
