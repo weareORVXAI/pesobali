@@ -87,10 +87,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ---------- DAYPARTS ---------- */
   .dayparts-section{border-top:1px solid var(--line);}
   .dayparts-taglines{display:flex;justify-content:space-between;gap:1rem;max-width:82rem;margin:0 auto;padding:1.7rem 1.6rem;font-family:var(--font-ui);font-size:0.64rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--stone-dim);}
-  .dayparts-taglines span{flex:1;}
+  .dayparts-taglines span{flex:1;text-align:center;}
   .dayparts-taglines span:nth-child(2){text-align:center;}
-  .dayparts-taglines span:last-child{text-align:right;}
-  .dayparts{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);}
+  .dayparts-taglines span:last-child{text-align:center;}
+  .dayparts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);}
   .daypart{position:relative;min-height:62vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem 1.1rem;background-size:cover;background-position:center;overflow:hidden;}
   .daypart::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(12,10,8,0.38), rgba(12,10,8,0.74));transition:background .45s var(--ease);}
   .daypart:hover::before{background:linear-gradient(180deg, rgba(12,10,8,0.22), rgba(12,10,8,0.6));}
