@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://pesobali.com/</loc><lastmod>2026-11-23</lastmod><priority>1.0</priority></url>
-  <url><loc>https://pesobali.com/menu</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority></url>
-  <url><loc>https://pesobali.com/whats-on</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority></url>
-  <url><loc>https://pesobali.com/jazz-night</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority></url>
-  <url><loc>https://pesobali.com/tapas-courtyard</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority></url>
-  <url><loc>https://pesobali.com/cocktail-lounge</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority></url>
-  <url><loc>https://pesobali.com/the-kitchen</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
-  <url><loc>https://pesobali.com/find-us</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url>
-  <url><loc>https://pesobali.com/a-night-at-peso</loc><lastmod>2026-11-23</lastmod><priority>0.6</priority></url>
-  <url><loc>https://pesobali.com/story</loc><lastmod>2026-11-23</lastmod><priority>0.6</priority></url>
-  <url><loc>https://pesobali.com/faq</loc><lastmod>2026-11-23</lastmod><priority>0.6</priority></url>
-  <url><loc>https://pesobali.com/privacy</loc><lastmod>2026-11-23</lastmod><priority>0.2</priority></url>
+  <url><loc>https://pesobali.com/</loc><lastmod>2026-11-25</lastmod><priority>1.0</priority></url>
+  <url><loc>https://pesobali.com/menu</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pesobali.com/whats-on</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pesobali.com/christmas</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pesobali.com/new-years-eve</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pesobali.com/jazz-night</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pesobali.com/tapas-courtyard</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pesobali.com/cocktail-lounge</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pesobali.com/the-kitchen</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pesobali.com/find-us</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pesobali.com/a-night-at-peso</loc><lastmod>2026-11-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://pesobali.com/story</loc><lastmod>2026-11-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://pesobali.com/faq</loc><lastmod>2026-11-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://pesobali.com/privacy</loc><lastmod>2026-11-25</lastmod><priority>0.2</priority></url>
 </urlset>
