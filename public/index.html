@@ -439,6 +439,51 @@ body:has(.nyebar:not([hidden])) .pnav:not(.is-stuck){top:40px;}
 }
 @media (prefers-reduced-motion:reduce){.nyepop,.nyepop__ov{transition:none}}
 </style>
+<style id="v2-css">
+.v2{--v2w:68rem;}
+.v2-eb,.v2-k{display:block;font-family:var(--font-ui);font-size:0.68rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brass);}
+.v2-intro{max-width:46rem;margin:0 auto;padding:clamp(5rem,12vw,9rem) 1.5rem clamp(4rem,9vw,7rem);text-align:center;}
+.v2-statement{margin:1.4rem 0 2.4rem;font-family:var(--font-display);font-weight:400;font-size:clamp(1.55rem,3.2vw,2.35rem);line-height:1.38;color:var(--ivory);text-wrap:balance;}
+.v2-actions{display:flex;gap:1.8rem;justify-content:center;align-items:center;flex-wrap:wrap;}
+.v2-btn{display:inline-block;padding:0.95rem 2.1rem;border-radius:999px;background:var(--brass);color:var(--black);font-family:var(--font-ui);font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;transition:background .25s ease;}
+.v2-btn:hover{background:var(--brass-bright);}
+.v2-link{font-family:var(--font-ui);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ivory);text-decoration:none;border-bottom:1px solid rgba(198,154,78,0.55);padding-bottom:0.3rem;}
+.v2-link:hover{color:var(--brass-bright);}
+.v2-spaces{max-width:var(--v2w);margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2.4vw,2rem);}
+.v2-space{display:block;text-decoration:none;color:inherit;}
+.v2-img{display:block;background-size:cover;background-position:center;border-radius:2px;}
+.v2-space .v2-img{aspect-ratio:4/5;margin-bottom:1.3rem;transition:opacity .35s ease;}
+.v2-space:hover .v2-img{opacity:0.85;}
+.v2-t{display:block;margin:0.55rem 0 0.35rem;font-family:var(--font-display);font-weight:400;font-size:clamp(1.35rem,2.2vw,1.65rem);color:var(--ivory);}
+.v2-d{display:block;font-family:var(--font-body);font-size:0.95rem;line-height:1.6;color:#b9ab95;}
+.v2-h{margin:0 0 1.6rem;font-family:var(--font-ui);font-size:0.68rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brass);text-align:center;}
+.v2-list{max-width:46rem;margin:0 auto;padding:clamp(5rem,10vw,8rem) 1.5rem 0;}
+.v2-list ul{list-style:none;margin:0;padding:0;border-top:1px solid rgba(198,154,78,0.2);}
+.v2-list li a{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.25rem 0.2rem;border-bottom:1px solid rgba(198,154,78,0.2);text-decoration:none;color:var(--ivory);transition:padding .25s ease,color .25s ease;}
+.v2-list li a:hover{padding-left:0.6rem;color:var(--brass-bright);}
+.v2-list span{font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.45rem);}
+.v2-list em{font-style:normal;font-family:var(--font-ui);font-size:0.78rem;letter-spacing:0.06em;color:#a89a85;text-align:right;}
+.v2-season{max-width:var(--v2w);margin:0 auto;padding:clamp(5rem,10vw,8rem) 1.5rem 0;display:grid;gap:clamp(3rem,6vw,5rem);}
+.v2-feature{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;text-decoration:none;color:inherit;}
+.v2-feature--rev .v2-img{order:2;}
+.v2-feature .v2-img{aspect-ratio:5/4;}
+.v2-fbody .v2-d{max-width:24rem;}
+.v2-more{display:inline-block;margin-top:1.4rem;font-family:var(--font-ui);font-size:0.7rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ivory);border-bottom:1px solid rgba(198,154,78,0.55);padding-bottom:0.3rem;}
+.v2-feature:hover .v2-more{color:var(--brass-bright);}
+.v2-visit{max-width:var(--v2w);margin:clamp(5rem,10vw,8rem) auto 0;padding:clamp(3rem,6vw,4rem) 1.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center;border-top:1px solid rgba(198,154,78,0.2);}
+.v2-visit p{margin:0.8rem 0 1rem;font-family:var(--font-body);font-size:0.98rem;line-height:1.7;color:#cbbda7;}
+@media (max-width:760px){
+  .v2-intro{padding-top:4rem;padding-bottom:3.5rem;}
+  .v2-spaces{grid-template-columns:1fr;gap:2.6rem;}
+  .v2-space .v2-img{aspect-ratio:4/3;margin-bottom:1rem;}
+  .v2-list li a{flex-direction:column;gap:0.3rem;}
+  .v2-list em{text-align:left;}
+  .v2-feature,.v2-feature--rev{grid-template-columns:1fr;gap:1.2rem;}
+  .v2-feature--rev .v2-img{order:0;}
+  .v2-feature .v2-img{aspect-ratio:4/3;}
+  .v2-visit{grid-template-columns:1fr;gap:2.2rem;}
+}
+</style>
 </head>
 <body>
 <div class="nyebar" id="nyebar" role="region" aria-label="New Year&rsquo;s Eve tickets">
@@ -473,145 +518,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
 
 <!-- INTRO -->
-<section class="intro" id="intro">
-  <h2>Some places you visit. PESO is one you sink into.</h2>
-  <p>A Spanish and Mediterranean tapas restaurant, cocktail lounge and hidden speakeasy in the heart of Bingin, Uluwatu. Long lunches under the palms, golden-hour spritzes, candlelit dinners from the wood fire, live music most nights, and a last drink somewhere red-lit and hidden. <em>PESO is not a dinner booking. It is the whole night.</em></p>
+<main class="v2">
+<section class="v2-intro" id="intro">
+  <p class="v2-eb">Bingin &middot; Uluwatu</p>
+  <h2 class="v2-statement">A Spanish and Mediterranean restaurant, cocktail lounge and hidden speakeasy. Long lunches, slow dinners, and the night that follows.</h2>
+  <div class="v2-actions"><a class="v2-btn" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search" target="_blank" rel="noopener">Book a table</a><a class="v2-link" href="/menu">View the menu</a></div>
 </section>
 
-<!-- DAYPARTS -->
-<section class="dayparts-section">
-  <div class="dayparts-taglines">
-    <span>Long lunch to last drink.</span>
-    <span>Three spaces. One night out.</span>
-    <span>Come for a plate. Stay for the night.</span>
-  </div>
-  <div class="dayparts">
-    <div class="daypart" style="background-image:url('day.jpg')">
-      <div class="daypart__in"><h3>Day</h3><p>Long lunch.<br>Chilled ros&eacute;.<br>Plates to share.</p></div>
-    </div>
-    <div class="daypart" style="background-image:url('golden-hour.jpg')">
-      <div class="daypart__in"><h3>Golden Hour</h3><p>Happy hour.<br>Oysters on ice.<br>Spritz in hand.</p></div>
-    </div>
-    <div class="daypart" style="background-image:url('peso-night-051.jpg')">
-      <div class="daypart__in"><h3>Night</h3><p>Wood-fired plates.<br>Candlelight.<br>Live music.</p></div>
-    </div>
-    <div class="daypart" style="background-image:url('peso-night-028.jpg')">
-      <div class="daypart__in"><h3>Late</h3><p>Disco balls.<br>DJs upstairs.<br>One more round.</p></div>
-    </div>
-  </div>
+<section class="v2-spaces" aria-label="The spaces">
+  <a class="v2-space" href="/tapas-courtyard"><span class="v2-img" style="background-image:url('peso-night-070.jpg')" role="img" aria-label="The courtyard at PESO"></span><span class="v2-k">Ground floor</span><span class="v2-t">The Courtyard</span><span class="v2-d">Lunch and dinner under the palms</span></a>
+  <a class="v2-space" href="/cocktail-lounge"><span class="v2-img" style="background-image:url('peso-night-054.jpg')" role="img" aria-label="The Cocktail Lounge at PESO"></span><span class="v2-k">Upstairs &middot; From 5pm</span><span class="v2-t">Cocktail Lounge</span><span class="v2-d">Golden hour, then DJs</span></a>
+  <a class="v2-space" href="/the-kitchen"><span class="v2-img" style="background-image:url('hero-kitchen.jpg')" role="img" aria-label="The Kitchen speakeasy at PESO"></span><span class="v2-k">Hidden</span><span class="v2-t">The Kitchen</span><span class="v2-d">Seven cocktails, made like dishes</span></a>
 </section>
 
-<!-- COURTYARD -->
-<section class="split">
-  <div class="split__media" style="background-image:url('peso-night-070.jpg')"></div>
-  <div class="split__body">
-    <p class="kicker">Ground Floor</p>
-    <h2>The Courtyard</h2>
-    <p>Palms overhead, festoon lights strung across the brick, and a table that keeps filling with plates. Pan con tomate and Gildas to start, oysters from the raw bar, then the wood fire takes over: Papuan prawns, Wagyu and a Basque cheesecake worth fighting over. Long lunches, slow dinners, jazz on Thursdays and live bands on Friday and Saturday.</p>
-    <div class="tags">
-      <span class="tag">Spanish Tapas</span>
-      <span class="tag">Raw Bar</span>
-      <span class="tag">Wood Fire</span>
-      <span class="tag">Live Music</span>
-      <span class="tag">Wine</span>
-    </div>
-    <p style="margin-top:1.6rem"><a class="link-btn" href="/tapas-courtyard">The Courtyard</a> &nbsp; <a class="link-btn" href="/menu">See the menu</a></p>
-  </div>
+<section class="v2-list" aria-label="What's on">
+  <h2 class="v2-h">This week</h2>
+  <ul>
+    <li><a href="/happy-hour"><span>Happy Hour</span><em>Daily &middot; 5 to 7pm</em></a></li>
+    <li><a href="/jazz-night"><span>Jazz Night</span><em>Thursday &middot; 6 to 9pm</em></a></li>
+    <li><a href="/peso-fridays"><span>PESO Fridays</span><em>IDR 100k cocktails until 9pm</em></a></li>
+    <li><a href="/live-music"><span>Live Music</span><em>Friday &amp; Saturday &middot; From 6pm</em></a></li>
+  </ul>
 </section>
 
-<!-- LOUNGE -->
-<section class="split split--reverse">
-  <div class="split__media" style="background-image:url('peso-night-054.jpg')"></div>
-  <div class="split__body">
-    <p class="kicker">Second Level</p>
-    <h2>The Cocktail Lounge</h2>
-    <p>Up the stairs, the night changes key. From 5pm the lights drop, the copper disco balls catch the glow and the first round lands. Signature cocktails, a properly cold martini, a wine list worth lingering over and DJs after dinner. Start at happy hour and see where the night goes.</p>
-    <div class="tags">
-      <span class="tag">Specialty Cocktails</span>
-      <span class="tag">Wine List</span>
-      <span class="tag">Happy Hour</span>
-    </div>
-    <p style="margin-top:1.6rem"><a class="link-btn" href="/cocktail-lounge">The Cocktail Lounge</a></p>
-  </div>
+<section class="v2-season" aria-label="Festive season">
+  <a class="v2-feature" href="/christmas"><span class="v2-img" style="background-image:url('xmas-table.jpg')" role="img" aria-label="A Christmas table set at PESO"></span>
+    <span class="v2-fbody"><span class="v2-k">Thursday 25 December</span><span class="v2-t">Christmas Day Lunch</span><span class="v2-d">A candlelit long table and a Spanish festive menu from the wood fire.</span><span class="v2-more">Book Christmas Day</span></span></a>
+  <a class="v2-feature v2-feature--rev" href="/new-years-eve"><span class="v2-img" style="background-image:url('peso-night-085.jpg')" role="img" aria-label="DJs at PESO"></span>
+    <span class="v2-fbody"><span class="v2-k">Thursday 31 December</span><span class="v2-t">New Year&rsquo;s Eve</span><span class="v2-d">Dinner in the courtyard, then DJs across every floor until next year.</span><span class="v2-more">Tickets and dinner</span></span></a>
 </section>
 
-<!-- THE KITCHEN -->
-<section class="split">
-  <div class="split__media" style="background-image:url('peso-night-103.jpg')"></div>
-  <div class="split__body">
-    <p class="kicker">The Speakeasy</p>
-    <h2>The Kitchen</h2>
-    <p>Behind the scenes at PESO, there is another world. A red-lit hideaway hung with pots and copper, and seven cocktails made like dishes: smoke, foam and a little theatre in every glass. Ask your server for The Kitchen.</p>
-    <p style="margin-top:1.6rem"><a class="link-btn" href="/the-kitchen">Step into The Kitchen</a></p>
-  </div>
+<section class="v2-visit" aria-label="Visit">
+  <div><span class="v2-k">Open</span><p>Daily, 12pm to 11pm<br>Cocktail Lounge from 5pm</p></div>
+  <div><span class="v2-k">Find us</span><p>Jl. Buana Sari, Pecatu<br>Bingin, next to 7AM Bakers</p><a class="v2-link" href="/find-us">Directions</a></div>
+  <div><span class="v2-k">Book</span><p>Walk-ins welcome<br>Groups and private events</p><a class="v2-link" href="https://wa.me/6285295225780?text=Hi%20PESO%2C%20" target="_blank" rel="noopener">WhatsApp us</a></div>
 </section>
-
-
-<!-- WHATS ON -->
-<section class="band" style="padding-top:4rem">
-  <p class="kicker">What&rsquo;s on this week</p>
-  <div class="trio">
-    <figure><a href="/jazz-night"><img src="jazz-trio.jpg" alt="Jazz night at PESO, Bingin, Uluwatu" loading="lazy"><figcaption>Jazz &middot; Thursday 6 to 9pm</figcaption></a></figure>
-    <figure><a href="/live-music"><img src="peso-night-071.jpg" alt="Live music at PESO, Bingin, Uluwatu" loading="lazy"><figcaption>Live bands &middot; Fri &amp; Sat 6pm</figcaption></a></figure>
-    <figure><a href="/happy-hour"><img src="peso-night-030.jpg" alt="Happy hour drinks at PESO" loading="lazy"><figcaption>Happy hour &middot; Daily 5 to 7pm</figcaption></a></figure>
-  </div>
-  <p style="margin-top:2rem"><a class="link-btn" href="/whats-on">See what&rsquo;s on</a></p>
-</section>
-
-<!-- TABLE BAND -->
-<section class="band">
-  <p class="kicker">What lands on the table</p>
-  <div class="trio">
-    <figure><a href="/menu#lunch"><img src="peso-night-083.jpg" alt="Oysters served at PESO Bali in Bingin, Uluwatu" loading="lazy"><figcaption>Oysters &amp; Tapas</figcaption></a></figure>
-    <figure><a href="/menu#wine"><img src="peso-night-029.jpg" alt="Sparkling wine poured at PESO Bali in Bingin, Uluwatu" loading="lazy"><figcaption>Wine</figcaption></a></figure>
-    <figure><a href="/menu#cocktails"><img src="peso-night-047.jpg" alt="A cocktail poured at the PESO Bali bar in Bingin, Uluwatu" loading="lazy"><figcaption>Cocktails</figcaption></a></figure>
-  </div>
-</section>
-
-<!-- A NIGHT AT PESO -->
-<section class="band" style="padding-top:1rem">
-  <p class="kicker">A Night at PESO</p>
-  <div class="trio">
-    <figure><a href="/a-night-at-peso"><img src="peso-night-016.jpg" alt="A full courtyard at PESO, Bingin, Uluwatu" loading="lazy"></a></figure>
-    <figure><a href="/a-night-at-peso"><img src="peso-night-031.jpg" alt="Guests at the bar at PESO" loading="lazy"></a></figure>
-    <figure><a href="/a-night-at-peso"><img src="peso-night-100.jpg" alt="A night in The Kitchen at PESO" loading="lazy"></a></figure>
-  </div>
-  <p style="margin-top:2rem"><a class="link-btn" href="/a-night-at-peso">See all the photos</a></p>
-</section>
-
-<!-- STORY TEASER -->
-<section class="story-teaser">
-  <div class="story-teaser__inner">
-    <p>PESO is built for the long, easy hours. Come for lunch, stay for the sunset and let the night find its own pace.</p>
-    <a class="link-btn" href="/story">Read our story</a>
-  </div>
-</section>
-
-<!-- SIGNUP -->
-<section class="signup-section">
-  <div class="signup" id="signupWrap">
-    <p class="signup__intro">Daily 12pm to 11pm &middot; Happy hour 5pm to 7pm</p>
-    <h2 class="signup__title">Your table in Bingin is waiting</h2>
-    <p class="signup__note">Walk in, or book ahead. <a class="link-btn" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search" target="_blank" rel="noopener">Book a table</a></p>
-    <p class="signup__note">Or leave your details and we will send you news from PESO.</p>
-    <form class="signup__form" id="signupForm" novalidate>
-      <div class="name-row">
-        <input class="field" type="text" id="firstName" name="first_name" placeholder="First name" autocomplete="given-name" required>
-        <input class="field" type="text" id="lastName" name="last_name" placeholder="Last name" autocomplete="family-name" required>
-      </div>
-      <input class="field" type="email" id="email" name="email" placeholder="Email address" autocomplete="email" required>
-      <input class="hp-field" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn-submit" type="submit" id="submitBtn">Join the list</button>
-      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
-    </form>
-    <p class="signup__consent">By joining you agree to receive occasional email updates from PESO, and to our <a href="/privacy">Privacy Policy</a>. We use Klaviyo to send them. Unsubscribe at any time.</p>
-    <div class="success" id="successBox">
-      <h3>You&rsquo;re on the list</h3>
-      <p>We will be in touch with news from PESO.</p>
-    </div>
-    <p class="signup__cta">For enquiries and private events: <a class="link-btn" href="mailto:contact@pesobali.com">contact@pesobali.com</a></p>
-  </div>
-</section>
+</main>
 
 <!-- FOOTER -->
 <footer class="foot">
