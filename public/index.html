@@ -382,8 +382,59 @@ src="https://www.facebook.com/tr?id=1634005124906344&ev=PageView&noscript=1"
   .daypart{min-width:0 !important;min-height:34vh !important;padding:1.6rem 0.8rem !important;}
 }
 </style>
+<style id="nye-css">
+.nyebar{position:absolute;top:0;left:0;right:0;z-index:31;height:40px;display:flex;align-items:center;justify-content:center;gap:0.9rem;padding:0 2.8rem;background:linear-gradient(90deg,#1a140c,#2a1f10 50%,#1a140c);border-bottom:1px solid rgba(198,154,78,0.35);font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.74rem;letter-spacing:0.06em;color:#f4ecdf;white-space:nowrap;}
+.nyebar[hidden],.nyepop[hidden],.nyepop__ov[hidden]{display:none !important;}
+.nyebar b{font-weight:600;color:#e0b666;letter-spacing:0.16em;text-transform:uppercase;font-size:0.66rem;}
+.nyebar a.nyebar__cta{color:#0c0a08;background:#c69a4e;border-radius:999px;padding:0.32rem 0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;font-size:0.64rem;text-decoration:none;}
+.nyebar a.nyebar__more{color:#f4ecdf;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(198,154,78,0.6);}
+.nyebar__x{position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;background:none;color:#a89a85;font-size:1.1rem;cursor:pointer;line-height:1;}
+body:has(.nyebar:not([hidden])) .pnav:not(.is-stuck){top:40px;}
+@media (max-width:760px){.nyebar{justify-content:flex-start;padding:0 2.6rem 0 1rem;gap:0.6rem;font-size:0.7rem}.nyebar .nyebar__txt,.nyebar .nyebar__more{display:none}}
+.nyepop__ov{position:fixed;inset:0;z-index:10000;background:rgba(8,7,5,0.62);opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.nyepop{position:fixed;z-index:10001;left:50%;top:50%;width:min(52rem,92vw);transform:translate(-50%,-46%);opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease;display:grid;grid-template-columns:1fr 1.15fr;background:#0f0c09;border:1px solid rgba(198,154,78,0.3);border-radius:4px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.55);font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;color:#f4ecdf;}
+.nyepop.is-open,.nyepop__ov.is-open{opacity:1;pointer-events:auto;}
+.nyepop.is-open{transform:translate(-50%,-50%);}
+.nyepop__img{background:url('peso-night-085.jpg') center/cover;min-height:100%;}
+.nyepop__in{padding:2.4rem 2.2rem 2rem;text-align:center;}
+.nyepop__eb{margin:0 0 0.8rem;font-size:0.66rem;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:#c69a4e;}
+.nyepop h2{margin:0 0 0.8rem;font-family:"Lora",Georgia,serif;font-weight:400;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.15;color:#f4ecdf;text-wrap:balance;}
+.nyepop__p{margin:0 0 1.3rem;font-size:0.92rem;line-height:1.7;color:#cbbda7;text-wrap:pretty;}
+.nyepop__price{text-wrap:balance;margin:0 0 1.2rem;font-size:0.78rem;letter-spacing:0.08em;color:#e0b666;}
+.nyepop__btns{display:flex;flex-direction:column;gap:0.6rem;align-items:center;}
+.nyepop__btns a{display:block;width:100%;max-width:20rem;text-align:center;text-decoration:none;border-radius:999px;padding:0.95rem 1rem;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;}
+.nyepop__tix{background:#c69a4e;color:#0c0a08;}
+.nyepop__tix:hover{background:#e0b666;}
+.nyepop__din{border:1px solid rgba(198,154,78,0.55);color:#f4ecdf;}
+.nyepop__sm{margin:0.7rem 0 0;font-size:0.72rem;color:#8a7d6b;}
+.nyepop__sub{margin:1.3rem 0 0;padding-top:1.1rem;border-top:1px solid rgba(198,154,78,0.18);}
+.nyepop__sub summary{cursor:pointer;font-size:0.78rem;color:#cbbda7;list-style:none;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(198,154,78,0.5);}
+.nyepop__sub summary::-webkit-details-marker{display:none}
+.nyepop__sub form{display:flex;gap:0.5rem;margin-top:0.8rem;}
+.nyepop__sub input[type=email]{flex:1;min-width:0;font-size:16px;padding:0.7rem 0.8rem;border:1px solid rgba(198,154,78,0.45);background:#16120d;color:#f4ecdf;border-radius:3px;}
+.nyepop__sub button{border:0;border-radius:3px;background:#2a2116;color:#e0b666;font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0 1rem;cursor:pointer;}
+.nyepop__msg{margin:0.5rem 0 0;font-size:0.76rem;min-height:1em;color:#cbbda7;}
+.nyepop__x{position:absolute;top:0.5rem;right:0.5rem;width:40px;height:40px;border:0;background:rgba(12,10,8,0.6);border-radius:50%;color:#f4ecdf;font-size:1.3rem;cursor:pointer;line-height:1;}
+.hp-nye{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+@media (max-width:760px){
+ .nyepop{left:0;right:0;top:auto;bottom:0;width:auto;transform:translateY(105%);grid-template-columns:1fr;border-radius:14px 14px 0 0;max-height:88vh;overflow-y:auto;}
+ .nyepop.is-open{transform:translateY(0);}
+ .nyepop__img{min-height:9.5rem;}
+ .nyepop__in{padding:1.5rem 1.25rem calc(1.4rem + env(safe-area-inset-bottom));}
+ .nyepop h2{font-size:1.65rem;}
+ .nyepop__p{font-size:0.88rem;margin-bottom:1rem;}
+}
+@media (prefers-reduced-motion:reduce){.nyepop,.nyepop__ov{transition:none}}
+</style>
 </head>
 <body>
+<div class="nyebar" id="nyebar" role="region" aria-label="New Year&rsquo;s Eve tickets">
+  <b>NYE at PESO</b><span class="nyebar__txt">31 December &middot; Early Bird tickets from IDR 463.5k</span>
+  <a class="nyebar__cta" href="https://megatix.co.id/events/peso-new-years-eve-2026" target="_blank" rel="noopener" data-nye="bar_tickets">Get tickets</a>
+  <a class="nyebar__more" href="/new-years-eve" data-nye="bar_details">Details</a>
+  <button class="nyebar__x" type="button" aria-label="Hide New Year&rsquo;s Eve banner">&times;</button>
+</div>
+<script>(function(){try{var b=document.getElementById('nyebar');if(Date.now()>Date.UTC(2026,11,31,18)||sessionStorage.getItem('peso_nyebar_x'))b.hidden=true;}catch(e){}})();</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7KDRST8"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -853,5 +904,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <!-- End PESO chat widget -->
+<!-- PESO NYE promo -->
+<div class="nyepop__ov" id="nyepopOv" hidden></div>
+<div class="nyepop" id="nyepop" role="dialog" aria-modal="true" aria-labelledby="nyepopH" hidden>
+  <div class="nyepop__img" role="img" aria-label="DJs and a full room at PESO, Bingin"></div>
+  <div class="nyepop__in">
+    <button class="nyepop__x" type="button" aria-label="Close">&times;</button>
+    <p class="nyepop__eb">Thursday 31 December</p>
+    <h2 id="nyepopH">New Year&rsquo;s Eve at PESO</h2>
+    <p class="nyepop__p">A Spanish feast from the wood fire, then DJs across the courtyard, the Cocktail Lounge and the rooftop until it is well and truly next year.</p>
+    <p class="nyepop__price">Early Bird tickets from IDR 463.5k &middot; includes a drink</p>
+    <div class="nyepop__btns">
+      <a class="nyepop__tix" href="https://megatix.co.id/events/peso-new-years-eve-2026" target="_blank" rel="noopener" data-nye="pop_tickets">Get tickets</a>
+      <a class="nyepop__din" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search?date=2026-12-31&amp;party_size=2" target="_blank" rel="noopener" data-nye="pop_dinner">Book dinner, party included</a>
+    </div>
+    <p class="nyepop__sm">Limited Early Bird release. 21+. <a href="/new-years-eve" style="color:#c69a4e" data-nye="pop_details">See the full night</a></p>
+    <details class="nyepop__sub"><summary>Not ready yet? Get NYE updates by email</summary>
+      <form id="nyepopForm" novalidate><input type="email" name="email" placeholder="Your email" autocomplete="email" aria-label="Email" required><input class="hp-nye" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Send</button></form>
+      <p class="nyepop__msg" id="nyepopMsg" aria-live="polite"></p>
+    </details>
+  </div>
+</div>
+<script>
+(function(){
+  var END=Date.UTC(2026,11,31,18), KEY='peso_nyepop';
+  if(Date.now()>END) return;
+  function dl(ev){try{(window.dataLayer=window.dataLayer||[]).push({event:'nye_promo',nye_action:ev});}catch(e){}}
+  function get(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
+  function set(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-nye]');if(!a)return;dl(a.getAttribute('data-nye'));
+    if(/tickets|dinner/.test(a.getAttribute('data-nye'))){var o=get();o.acted=Date.now();set(o);}});
+  var bx=document.querySelector('.nyebar__x');
+  if(bx) bx.addEventListener('click',function(){document.getElementById('nyebar').hidden=true;try{sessionStorage.setItem('peso_nyebar_x','1');}catch(e){}dl('bar_close');});
+  var pop=document.getElementById('nyepop'), ov=document.getElementById('nyepopOv');
+  if(!pop) return;
+  var s=get(), now=Date.now();
+  if((s.acted&&now-s.acted<30*864e5)||(s.joined)||(s.closed&&now-s.closed<2*864e5)) return;
+  var shown=false, last=null;
+  function open(){if(shown)return;shown=true;last=document.activeElement;pop.hidden=false;ov.hidden=false;
+    requestAnimationFrame(function(){pop.classList.add('is-open');ov.classList.add('is-open');});
+    var t=pop.querySelector('.nyepop__tix'); setTimeout(function(){t&&t.focus({preventScroll:true});},360); dl('pop_view');
+    window.removeEventListener('scroll',onScroll);}
+  function close(){pop.classList.remove('is-open');ov.classList.remove('is-open');var o=get();o.closed=Date.now();set(o);dl('pop_close');
+    setTimeout(function(){pop.hidden=true;ov.hidden=true;},360); if(last&&last.focus) last.focus({preventScroll:true});}
+  function onScroll(){var h=document.documentElement;if(h.scrollTop/(h.scrollHeight-h.clientHeight)>0.35) open();}
+  setTimeout(open,9000); window.addEventListener('scroll',onScroll,{passive:true});
+  pop.querySelector('.nyepop__x').addEventListener('click',close); ov.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&pop.classList.contains('is-open'))close();});
+  var f=document.getElementById('nyepopForm'), m=document.getElementById('nyepopMsg');
+  f.addEventListener('submit',function(e){e.preventDefault();var em=f.email.value.trim();
+    if(f.company.value){m.textContent='Thanks, you are on the list.';return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.textContent='Please enter a valid email.';return;}
+    var b=f.querySelector('button');b.disabled=true;b.textContent='…';
+    fetch('https://a.klaviyo.com/client/subscriptions/?company_id=U2AHmv',{method:'POST',headers:{'Content-Type':'application/json','revision':'2024-10-15'},
+      body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'pesobali.com NYE pop-up',profile:{data:{type:'profile',attributes:{email:em,properties:{nye_2026_interest:true}}}}},relationships:{list:{data:{type:'list',id:'WM9UUx'}}}}})})
+    .then(function(r){if(r.ok){m.textContent='Done. Check your inbox to confirm, then we will keep you posted.';f.style.display='none';var o=get();o.joined=Date.now();set(o);dl('pop_subscribe');}
+      else{m.textContent='Something went wrong. Please try again.';b.disabled=false;b.textContent='Send';}})
+    .catch(function(){m.textContent='Could not connect. Please try again.';b.disabled=false;b.textContent='Send';});});
+})();
+</script>
+<!-- End PESO NYE promo -->
 </body>
 </html>

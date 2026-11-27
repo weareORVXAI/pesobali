@@ -412,6 +412,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="note">Prices in IDR thousands. Tickets are released in tiers, and the price moves up when a tier sells out. Cocktails and premium bottles are at the bar. 21+ only, valid ID required at the door.</p>
   <div class="cta-row"><a class="btn" href="https://megatix.co.id/events/peso-new-years-eve-2026" target="_blank" rel="noopener">Get party tickets</a><a class="btn btn--ghost" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search?date=2026-12-31&party_size=2" target="_blank" rel="noopener">Book dinner</a></div>
 
+<div class="nyeform" id="nye-updates">
+  <h2>Coming with a group?</h2>
+  <p>Tell us how many of you there are and we will help you plan the night: dinner tables, party tickets or both. Or just leave your email for NYE updates and the next ticket release.</p>
+  <form id="nyeForm" novalidate>
+    <div class="nyeform__row"><label>First name<input name="first" type="text" autocomplete="given-name"></label><label>Email<input name="email" type="email" autocomplete="email" required></label></div>
+    <div class="nyeform__row"><label>Mobile / WhatsApp <small>(optional)</small><input name="phone" type="tel" autocomplete="tel"></label>
+      <label>Group size<select name="size"><option value="">Just me / not sure</option><option>2</option><option>3 to 5</option><option>6 to 10</option><option>10+</option></select></label></div>
+    <label class="nyeform__ck"><input type="checkbox" name="consent" required> Yes, email me about New Year&rsquo;s Eve and events at PESO. Unsubscribe any time.</label>
+    <input class="hp-nye" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn" type="submit">Send</button>
+    <p class="nyeform__msg" id="nyeFormMsg" aria-live="polite"></p>
+  </form>
+</div>
+<style id="nyeform-css">
+.nyeform{margin:2.6rem 0;padding:2rem 0;border-top:1px solid rgba(198,154,78,0.22);border-bottom:1px solid rgba(198,154,78,0.22);}
+.nyeform h2{margin-top:0}
+.nyeform__row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem;}
+.nyeform label{display:flex;flex-direction:column;gap:0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#c69a4e;font-weight:600;}
+.nyeform label small{text-transform:none;letter-spacing:0;color:#8a7d6b;font-weight:400}
+.nyeform input[type=text],.nyeform input[type=email],.nyeform input[type=tel],.nyeform select{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;font-weight:400;color:#f4ecdf;background:#16120d;border:1px solid rgba(198,154,78,0.4);border-radius:3px;padding:0.75rem 0.8rem;}
+.nyeform__ck{flex-direction:row !important;align-items:flex-start;gap:0.6rem !important;text-transform:none !important;letter-spacing:0 !important;font-weight:400 !important;font-size:0.86rem !important;color:#cbbda7 !important;margin:0.4rem 0 1.1rem;line-height:1.5;}
+.nyeform__ck input{margin-top:0.2rem;accent-color:#c69a4e;width:18px;height:18px;flex:none}
+.nyeform__msg{margin:0.8rem 0 0;font-size:0.88rem;color:#cbbda7;min-height:1em}
+.nyeform .hp-nye{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.nyeform__row label{justify-content:flex-end}
+@media (max-width:760px){.nyeform__row{grid-template-columns:1fr}.nyeform .btn{width:100%}}
+</style>
+<script>
+(function(){
+  var f=document.getElementById('nyeForm'),m=document.getElementById('nyeFormMsg');if(!f)return;
+  function e164(p){p=(p||'').replace(/[^\d+]/g,'');if(!p)return null;if(p[0]==='+')return p;if(p.indexOf('62')===0)return '+'+p;if(p[0]==='0')return '+62'+p.slice(1);if(p[0]==='8')return '+62'+p;return '+'+p;}
+  var H={'Content-Type':'application/json','revision':'2024-10-15'},C='https://a.klaviyo.com/client/';
+  f.addEventListener('submit',function(ev){ev.preventDefault();m.textContent='';
+    if(f.company.value){m.textContent='Thanks, we will be in touch.';return;}
+    var em=f.email.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.textContent='Please enter a valid email.';return;}
+    if(!f.consent.checked){m.textContent='Please tick the box so we can email you.';return;}
+    var b=f.querySelector('button');b.disabled=true;b.textContent='Sending…';
+    var props={nye_2026_interest:true,nye_group_size:f.size.value||'not given',nye_mobile:f.phone.value.trim()||null};
+    var attrs={email:em,properties:props};if(f.first.value.trim())attrs.first_name=f.first.value.trim();
+    var ph=e164(f.phone.value);
+    // 1) consent + list: email only, so no SMS consent is recorded
+    fetch(C+'subscriptions/?company_id=U2AHmv',{method:'POST',headers:H,body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'pesobali.com NYE page form',profile:{data:{type:'profile',attributes:{email:em}}}},relationships:{list:{data:{type:'list',id:'WM9UUx'}}}}})})
+    .then(function(r){if(!r.ok)throw 0;
+      // 2) profile details (no consent implied)
+      if(ph)attrs.phone_number=ph;
+      return fetch(C+'profiles/?company_id=U2AHmv',{method:'POST',headers:H,body:JSON.stringify({data:{type:'profile',attributes:attrs}})}).catch(function(){});})
+    .then(function(){f.reset();f.querySelectorAll('label,button').forEach(function(x){x.style.display='none'});
+      m.textContent='Thank you. Check your inbox to confirm your email, and we will be in touch about the night.';
+      try{(window.dataLayer=window.dataLayer||[]).push({event:'nye_promo',nye_action:'page_form_submit'});localStorage.setItem('peso_nyepop',JSON.stringify({joined:Date.now()}));}catch(e){}})
+    .catch(function(){m.textContent='Something went wrong. Please try again, or message us on WhatsApp.';b.disabled=false;b.textContent='Send';});
+  });
+})();
+</script>
   <h2>Questions</h2>
   <p><b>How much is it?</b><br>IDR 750,000 per person, exclusive of 10% tax and 7% service charge.</p>
   <p><b>Do I have to take the set menu?</b><br>No. At dinner you can order from the normal menu or take the set menu at IDR 750k++. Either way the booking includes party entry.</p>
