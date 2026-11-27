@@ -662,11 +662,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var b=f.querySelector('button');b.disabled=true;b.textContent='Sending…';
     fetch('https://a.klaviyo.com/client/subscriptions/?company_id=U2AHmv',{method:'POST',headers:{'Content-Type':'application/json','revision':'2024-10-15'},
       body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'pesobali.com NYE early access pop-up',profile:{data:{type:'profile',attributes:{email:em,properties:{nye_2026_interest:true,nye_early_access:true}}}}},relationships:{list:{data:{type:'list',id:'WM9UUx'}}}}})})
-    .then(function(r){if(r.ok){m.textContent='You are on the list. Check your inbox and confirm your email so you do not miss the next release.';f.style.display='none';var o=get();o.joined=Date.now();set(o);dl('pop_subscribe');}
+    .then(function(r){if(r.ok){m.textContent='You are on the list. Check your inbox and confirm your email so you do not miss the next release.';f.style.display='none';var o=get();o.joined=Date.now();set(o);dl('pop_subscribe');try{window.dispatchEvent(new CustomEvent('peso:signup',{detail:{source:'NYE early access pop-up'}}));}catch(e){}}
       else{m.textContent='Something went wrong. Please try again.';b.disabled=false;b.textContent='Get early access';}})
     .catch(function(){m.textContent='Could not connect. Please try again.';b.disabled=false;b.textContent='Get early access';});});
 })();
 </script>
 <!-- End PESO NYE promo -->
+<script id="peso-track">
+(function(){
+  function fb(ev,p){try{if(window.fbq)fbq('track',ev,p||{});}catch(e){}}
+  function ga(ev,p){try{if(window.gtag)gtag('event',ev,p||{});}catch(e){}}
+  var EV={'peso-new-years-eve-2026':['New Year\'s Eve 2026',450000],'peso-christmas-eve-2026':['Christmas Eve 2026',100000]};
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="megatix.co.id/events/"]'); if(!a) return;
+    var slug=(a.getAttribute('href').split('/events/')[1]||'').split(/[?#/]/)[0], info=EV[slug]||[slug,0];
+    fb('InitiateCheckout',{content_name:info[0]+' tickets',content_category:'event_ticket',value:info[1],currency:'IDR'});
+    ga('ticket_click',{event_name_detail:info[0],link_url:a.href,page_path:location.pathname});
+  },true);
+  window.addEventListener('peso:signup',function(e){
+    var d=(e&&e.detail)||{};
+    fb('CompleteRegistration',{content_name:d.source||'Email sign-up',status:'subscribed'});
+    ga('sign_up',{method:d.source||'website form'});
+  });
+})();
+</script>
 </body>
 </html>
