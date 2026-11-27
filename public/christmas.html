@@ -317,8 +317,8 @@ body:has(.nyebar:not([hidden])) .pnav:not(.is-stuck){top:40px;}
 .nyepop__price{text-wrap:balance;margin:0 0 1.2rem;font-size:0.78rem;letter-spacing:0.08em;color:#e0b666;}
 .nyepop__btns{display:flex;flex-direction:column;gap:0.6rem;align-items:center;}
 .nyepop__btns a{display:block;width:100%;max-width:20rem;text-align:center;text-decoration:none;border-radius:999px;padding:0.95rem 1rem;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;}
-.nyepop__tix{background:#c69a4e;color:#0c0a08;}
-.nyepop__tix:hover{background:#e0b666;}
+.nyepop__tix{border:1px solid #c69a4e;color:#e0b666;}
+.nyepop__tix:hover{background:rgba(198,154,78,0.15);}
 .nyepop__din{border:1px solid rgba(198,154,78,0.55);color:#f4ecdf;}
 .nyepop__sm{margin:0.7rem 0 0;font-size:0.72rem;color:#8a7d6b;}
 .nyepop__sub{margin:1.3rem 0 0;padding-top:1.1rem;border-top:1px solid rgba(198,154,78,0.18);}
@@ -329,6 +329,15 @@ body:has(.nyebar:not([hidden])) .pnav:not(.is-stuck){top:40px;}
 .nyepop__sub button{border:0;border-radius:3px;background:#2a2116;color:#e0b666;font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0 1rem;cursor:pointer;}
 .nyepop__msg{margin:0.5rem 0 0;font-size:0.76rem;min-height:1em;color:#cbbda7;}
 .nyepop__x{position:absolute;top:0.5rem;right:0.5rem;width:40px;height:40px;border:0;background:rgba(12,10,8,0.6);border-radius:50%;color:#f4ecdf;font-size:1.3rem;cursor:pointer;line-height:1;}
+.nyepop__form{display:flex;gap:0.5rem;margin:0 auto;max-width:24rem;}
+.nyepop__form input[type=email]{flex:1;min-width:0;font-size:16px;padding:0.85rem 0.9rem;border:1px solid rgba(198,154,78,0.55);background:#16120d;color:#f4ecdf;border-radius:3px;}
+.nyepop__form button{border:0;border-radius:3px;background:#c69a4e;color:#0c0a08;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0 1rem;cursor:pointer;white-space:nowrap;}
+.nyepop__form button:hover{background:#e0b666;}
+.nyepop__legal{margin:0.55rem 0 0;font-size:0.68rem;color:#7d7262;}
+.nyepop__now{margin:1.3rem 0 0;padding-top:1.1rem;border-top:1px solid rgba(198,154,78,0.18);}
+.nyepop__now span{display:block;margin:0 0 0.8rem;font-size:0.8rem;color:#cbbda7;text-wrap:balance;}
+.nyepop__now .nyepop__btns{flex-direction:row;justify-content:center;flex-wrap:wrap;}
+.nyepop__now .nyepop__btns a{width:auto;max-width:none;padding:0.75rem 1.1rem;font-size:0.64rem;}
 .hp-nye{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
 @media (max-width:760px){
  .nyepop{left:0;right:0;top:auto;bottom:0;width:auto;transform:translateY(105%);grid-template-columns:1fr;border-radius:14px 14px 0 0;max-height:88vh;overflow-y:auto;}
@@ -337,6 +346,10 @@ body:has(.nyebar:not([hidden])) .pnav:not(.is-stuck){top:40px;}
  .nyepop__in{padding:1.5rem 1.25rem calc(1.4rem + env(safe-area-inset-bottom));}
  .nyepop h2{font-size:1.65rem;}
  .nyepop__p{font-size:0.88rem;margin-bottom:1rem;}
+ .nyepop__form{flex-direction:column;}
+ .nyepop__form button{padding:0.95rem 1rem;}
+ .nyepop{overflow-x:hidden;}
+ .nyepop__in{min-width:0;}
 }
 @media (prefers-reduced-motion:reduce){.nyepop,.nyepop__ov{transition:none}}
 </style>
@@ -473,6 +486,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>Seven days later we do it again, louder. Dinner in the courtyard until 9pm, DJs from 6pm, and midnight over Bingin. Dinner bookings include entry to the party upstairs.</p>
   <div class="cta-row"><a class="btn btn--ghost" href="/new-years-eve">New Year&rsquo;s Eve at PESO</a></div>
 
+<div class="nyeform" id="nye-updates">
+  <h2>Not booked yet?</h2>
+  <p>Join the list for 24-hour early access to New Year&rsquo;s Eve ticket releases, plus first word on Christmas Day tables and every party after. Coming with a group? Tell us how many.</p>
+  <form id="nyeForm" novalidate>
+    <div class="nyeform__row"><label>First name<input name="first" type="text" autocomplete="given-name"></label><label>Email<input name="email" type="email" autocomplete="email" required></label></div>
+    <div class="nyeform__row"><label>Mobile / WhatsApp <small>(optional)</small><input name="phone" type="tel" autocomplete="tel"></label>
+      <label>Group size<select name="size"><option value="">Just me / not sure</option><option>2</option><option>3 to 5</option><option>6 to 10</option><option>10+</option></select></label></div>
+    <label class="nyeform__ck"><input type="checkbox" name="consent" required> Yes, email me early access to New Year&rsquo;s Eve tickets and news from PESO. Unsubscribe any time.</label>
+    <input class="hp-nye" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn" type="submit">Get early access</button>
+    <p class="nyeform__msg" id="nyeFormMsg" aria-live="polite"></p>
+  </form>
+</div>
+<style id="nyeform-css">
+.nyeform{margin:2.6rem 0;padding:2rem 0;border-top:1px solid rgba(198,154,78,0.22);border-bottom:1px solid rgba(198,154,78,0.22);}
+.nyeform h2{margin-top:0}
+.nyeform__row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem;}
+.nyeform label{display:flex;flex-direction:column;gap:0.35rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#c69a4e;font-weight:600;}
+.nyeform label small{text-transform:none;letter-spacing:0;color:#8a7d6b;font-weight:400}
+.nyeform input[type=text],.nyeform input[type=email],.nyeform input[type=tel],.nyeform select{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;font-weight:400;color:#f4ecdf;background:#16120d;border:1px solid rgba(198,154,78,0.4);border-radius:3px;padding:0.75rem 0.8rem;}
+.nyeform__ck{flex-direction:row !important;align-items:flex-start;gap:0.6rem !important;text-transform:none !important;letter-spacing:0 !important;font-weight:400 !important;font-size:0.86rem !important;color:#cbbda7 !important;margin:0.4rem 0 1.1rem;line-height:1.5;}
+.nyeform__ck input{margin-top:0.2rem;accent-color:#c69a4e;width:18px;height:18px;flex:none}
+.nyeform__msg{margin:0.8rem 0 0;font-size:0.88rem;color:#cbbda7;min-height:1em}
+.nyeform .hp-nye{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.nyeform__row label{justify-content:flex-end}
+@media (max-width:760px){.nyeform__row{grid-template-columns:1fr}.nyeform .btn{width:100%}}
+</style>
+<script>
+(function(){
+  var f=document.getElementById('nyeForm'),m=document.getElementById('nyeFormMsg');if(!f)return;
+  function e164(p){p=(p||'').replace(/[^\d+]/g,'');if(!p)return null;if(p[0]==='+')return p;if(p.indexOf('62')===0)return '+'+p;if(p[0]==='0')return '+62'+p.slice(1);if(p[0]==='8')return '+62'+p;return '+'+p;}
+  var H={'Content-Type':'application/json','revision':'2024-10-15'},C='https://a.klaviyo.com/client/';
+  f.addEventListener('submit',function(ev){ev.preventDefault();m.textContent='';
+    if(f.company.value){m.textContent='Thanks, we will be in touch.';return;}
+    var em=f.email.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.textContent='Please enter a valid email.';return;}
+    if(!f.consent.checked){m.textContent='Please tick the box so we can email you.';return;}
+    var b=f.querySelector('button');b.disabled=true;b.textContent='Sending…';
+    var props={nye_2026_interest:true,nye_early_access:true,signup_page:'christmas',nye_group_size:f.size.value||'not given',nye_mobile:f.phone.value.trim()||null};
+    var attrs={email:em,properties:props};if(f.first.value.trim())attrs.first_name=f.first.value.trim();
+    var ph=e164(f.phone.value);
+    // 1) consent + list: email only, so no SMS consent is recorded
+    fetch(C+'subscriptions/?company_id=U2AHmv',{method:'POST',headers:H,body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'pesobali.com Christmas page form',profile:{data:{type:'profile',attributes:{email:em}}}},relationships:{list:{data:{type:'list',id:'WM9UUx'}}}}})})
+    .then(function(r){if(!r.ok)throw 0;
+      // 2) profile details (no consent implied)
+      if(ph)attrs.phone_number=ph;
+      return fetch(C+'profiles/?company_id=U2AHmv',{method:'POST',headers:H,body:JSON.stringify({data:{type:'profile',attributes:attrs}})}).catch(function(){});})
+    .then(function(){f.reset();f.querySelectorAll('label,button').forEach(function(x){x.style.display='none'});
+      m.textContent='You are on the list. Check your inbox and confirm your email so you get the next release 24 hours early.';
+      try{(window.dataLayer=window.dataLayer||[]).push({event:'nye_promo',nye_action:'page_form_submit'});localStorage.setItem('peso_nyepop',JSON.stringify({joined:Date.now()}));}catch(e){}})
+    .catch(function(){m.textContent='Something went wrong. Please try again, or message us on WhatsApp.';b.disabled=false;b.textContent='Get early access';});
+  });
+})();
+</script>
   <h2>Questions</h2>
   <p><b>Are you open on Christmas Day?</b><br>Yes, in the courtyard, with the festive menu.</p>
   <p><b>Do I need a ticket for Christmas Day?</b><br>No. Christmas Day is a table booking through SevenRooms.</p>
@@ -638,19 +705,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="nyepop__img" role="img" aria-label="DJs and a full room at PESO, Bingin"></div>
   <div class="nyepop__in">
     <button class="nyepop__x" type="button" aria-label="Close">&times;</button>
-    <p class="nyepop__eb">Thursday 31 December</p>
-    <h2 id="nyepopH">New Year&rsquo;s Eve at PESO</h2>
-    <p class="nyepop__p">A Spanish feast from the wood fire, then DJs across the courtyard, the Cocktail Lounge and the rooftop until it is well and truly next year.</p>
-    <p class="nyepop__price">Early Bird tickets from IDR 463.5k &middot; includes a drink</p>
-    <div class="nyepop__btns">
-      <a class="nyepop__tix" href="https://megatix.co.id/events/peso-new-years-eve-2026" target="_blank" rel="noopener" data-nye="pop_tickets">Get tickets</a>
-      <a class="nyepop__din" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search?date=2026-12-31&amp;party_size=2" target="_blank" rel="noopener" data-nye="pop_dinner">Book dinner, party included</a>
+    <p class="nyepop__eb">New Year&rsquo;s Eve at PESO &middot; 31 December</p>
+    <h2 id="nyepopH">Get NYE tickets 24 hours before everyone else</h2>
+    <p class="nyepop__p">Tickets are released in tiers. Join the list and you get every new release a full day before it goes public, plus first word on Christmas Day tables.</p>
+    <form class="nyepop__form" id="nyepopForm" novalidate><input type="email" name="email" placeholder="Your email" autocomplete="email" aria-label="Email" required><input class="hp-nye" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Get early access</button></form>
+    <p class="nyepop__msg" id="nyepopMsg" aria-live="polite"></p>
+    <p class="nyepop__legal">By signing up you agree to get emails from PESO. Unsubscribe any time.</p>
+    <div class="nyepop__now"><span>Ready now? Early Bird is on sale, from IDR 463.5k with a drink.</span>
+      <div class="nyepop__btns"><a class="nyepop__tix" href="https://megatix.co.id/events/peso-new-years-eve-2026" target="_blank" rel="noopener" data-nye="pop_tickets">Buy Early Bird</a><a class="nyepop__din" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search?date=2026-12-31&amp;party_size=2" target="_blank" rel="noopener" data-nye="pop_dinner">Book dinner, party included</a></div>
     </div>
-    <p class="nyepop__sm">Limited Early Bird release. 21+. <a href="/new-years-eve" style="color:#c69a4e" data-nye="pop_details">See the full night</a></p>
-    <details class="nyepop__sub"><summary>Not ready yet? Get NYE updates by email</summary>
-      <form id="nyepopForm" novalidate><input type="email" name="email" placeholder="Your email" autocomplete="email" aria-label="Email" required><input class="hp-nye" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Send</button></form>
-      <p class="nyepop__msg" id="nyepopMsg" aria-live="polite"></p>
-    </details>
   </div>
 </div>
 <script>
@@ -671,7 +734,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var shown=false, last=null;
   function open(){if(shown)return;shown=true;last=document.activeElement;pop.hidden=false;ov.hidden=false;
     requestAnimationFrame(function(){pop.classList.add('is-open');ov.classList.add('is-open');});
-    var t=pop.querySelector('.nyepop__tix'); setTimeout(function(){t&&t.focus({preventScroll:true});},360); dl('pop_view');
+    var t=pop.querySelector('.nyepop__form input[type=email]'); setTimeout(function(){t&&t.focus({preventScroll:true});},360); dl('pop_view');
     window.removeEventListener('scroll',onScroll);}
   function close(){pop.classList.remove('is-open');ov.classList.remove('is-open');var o=get();o.closed=Date.now();set(o);dl('pop_close');
     setTimeout(function(){pop.hidden=true;ov.hidden=true;},360); if(last&&last.focus) last.focus({preventScroll:true});}
@@ -683,12 +746,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   f.addEventListener('submit',function(e){e.preventDefault();var em=f.email.value.trim();
     if(f.company.value){m.textContent='Thanks, you are on the list.';return;}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.textContent='Please enter a valid email.';return;}
-    var b=f.querySelector('button');b.disabled=true;b.textContent='…';
+    var b=f.querySelector('button');b.disabled=true;b.textContent='Sending…';
     fetch('https://a.klaviyo.com/client/subscriptions/?company_id=U2AHmv',{method:'POST',headers:{'Content-Type':'application/json','revision':'2024-10-15'},
-      body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'pesobali.com NYE pop-up',profile:{data:{type:'profile',attributes:{email:em,properties:{nye_2026_interest:true}}}}},relationships:{list:{data:{type:'list',id:'WM9UUx'}}}}})})
-    .then(function(r){if(r.ok){m.textContent='Done. Check your inbox to confirm, then we will keep you posted.';f.style.display='none';var o=get();o.joined=Date.now();set(o);dl('pop_subscribe');}
-      else{m.textContent='Something went wrong. Please try again.';b.disabled=false;b.textContent='Send';}})
-    .catch(function(){m.textContent='Could not connect. Please try again.';b.disabled=false;b.textContent='Send';});});
+      body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'pesobali.com NYE early access pop-up',profile:{data:{type:'profile',attributes:{email:em,properties:{nye_2026_interest:true,nye_early_access:true}}}}},relationships:{list:{data:{type:'list',id:'WM9UUx'}}}}})})
+    .then(function(r){if(r.ok){m.textContent='You are on the list. Check your inbox and confirm your email so you do not miss the next release.';f.style.display='none';var o=get();o.joined=Date.now();set(o);dl('pop_subscribe');}
+      else{m.textContent='Something went wrong. Please try again.';b.disabled=false;b.textContent='Get early access';}})
+    .catch(function(){m.textContent='Could not connect. Please try again.';b.disabled=false;b.textContent='Get early access';});});
 })();
 </script>
 <!-- End PESO NYE promo -->

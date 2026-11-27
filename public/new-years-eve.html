@@ -413,15 +413,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="cta-row"><a class="btn" href="https://megatix.co.id/events/peso-new-years-eve-2026" target="_blank" rel="noopener">Get party tickets</a><a class="btn btn--ghost" href="https://www.sevenrooms.com/explore/pesobali/reservations/create/search?date=2026-12-31&party_size=2" target="_blank" rel="noopener">Book dinner</a></div>
 
 <div class="nyeform" id="nye-updates">
-  <h2>Coming with a group?</h2>
-  <p>Tell us how many of you there are and we will help you plan the night: dinner tables, party tickets or both. Or just leave your email for NYE updates and the next ticket release.</p>
+  <h2>Get the next release 24 hours early</h2>
+  <p>Early Bird is on sale now and tickets go up in tiers. Leave your details and you get every new release a full day before it goes public. Coming with a group? Tell us how many and we will help you plan the night.</p>
   <form id="nyeForm" novalidate>
     <div class="nyeform__row"><label>First name<input name="first" type="text" autocomplete="given-name"></label><label>Email<input name="email" type="email" autocomplete="email" required></label></div>
     <div class="nyeform__row"><label>Mobile / WhatsApp <small>(optional)</small><input name="phone" type="tel" autocomplete="tel"></label>
       <label>Group size<select name="size"><option value="">Just me / not sure</option><option>2</option><option>3 to 5</option><option>6 to 10</option><option>10+</option></select></label></div>
-    <label class="nyeform__ck"><input type="checkbox" name="consent" required> Yes, email me about New Year&rsquo;s Eve and events at PESO. Unsubscribe any time.</label>
+    <label class="nyeform__ck"><input type="checkbox" name="consent" required> Yes, email me early access to New Year&rsquo;s Eve tickets and news from PESO. Unsubscribe any time.</label>
     <input class="hp-nye" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <button class="btn" type="submit">Send</button>
+    <button class="btn" type="submit">Get early access</button>
     <p class="nyeform__msg" id="nyeFormMsg" aria-live="polite"></p>
   </form>
 </div>
@@ -450,7 +450,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){m.textContent='Please enter a valid email.';return;}
     if(!f.consent.checked){m.textContent='Please tick the box so we can email you.';return;}
     var b=f.querySelector('button');b.disabled=true;b.textContent='Sending…';
-    var props={nye_2026_interest:true,nye_group_size:f.size.value||'not given',nye_mobile:f.phone.value.trim()||null};
+    var props={nye_2026_interest:true,nye_early_access:true,signup_page:'new-years-eve',nye_group_size:f.size.value||'not given',nye_mobile:f.phone.value.trim()||null};
     var attrs={email:em,properties:props};if(f.first.value.trim())attrs.first_name=f.first.value.trim();
     var ph=e164(f.phone.value);
     // 1) consent + list: email only, so no SMS consent is recorded
@@ -460,9 +460,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if(ph)attrs.phone_number=ph;
       return fetch(C+'profiles/?company_id=U2AHmv',{method:'POST',headers:H,body:JSON.stringify({data:{type:'profile',attributes:attrs}})}).catch(function(){});})
     .then(function(){f.reset();f.querySelectorAll('label,button').forEach(function(x){x.style.display='none'});
-      m.textContent='Thank you. Check your inbox to confirm your email, and we will be in touch about the night.';
+      m.textContent='You are on the list. Check your inbox and confirm your email so you get the next release 24 hours early.';
       try{(window.dataLayer=window.dataLayer||[]).push({event:'nye_promo',nye_action:'page_form_submit'});localStorage.setItem('peso_nyepop',JSON.stringify({joined:Date.now()}));}catch(e){}})
-    .catch(function(){m.textContent='Something went wrong. Please try again, or message us on WhatsApp.';b.disabled=false;b.textContent='Send';});
+    .catch(function(){m.textContent='Something went wrong. Please try again, or message us on WhatsApp.';b.disabled=false;b.textContent='Get early access';});
   });
 })();
 </script>
